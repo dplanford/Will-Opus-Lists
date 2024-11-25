@@ -1,4 +1,4 @@
-package com.mrowl.willopuslists
+package com.opusgames.willopuslists
 
 import io.flutter.embedding.android.FlutterActivity
 

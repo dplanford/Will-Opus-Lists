@@ -47,7 +47,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.mrowl.willopuslists"
+        applicationId "com.opusgames.willopuslists"
         minSdkVersion 24 //flutter.minSdkVersion (21)
         targetSdkVersion flutter.targetSdkVersion // (34)
         versionCode flutterVersionCode.toInteger()

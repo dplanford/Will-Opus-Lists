@@ -5,7 +5,7 @@ class AdaptiveCircularProgressIndicator extends StatelessWidget {
   final double radius; // Only used for iOS progress indicator.
   final double strokeWidth; // Only used for non-iOS progress indicator.
 
-  AdaptiveCircularProgressIndicator({
+  const AdaptiveCircularProgressIndicator({
     super.key,
     this.radius = 20.0,
     this.strokeWidth = 4.0,

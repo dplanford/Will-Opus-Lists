@@ -54,7 +54,7 @@ class _WillOpusScreenState extends State<WillOpusScreen> {
         children: [
           Expanded(
             child: isLoading
-                ? Center(child: AdaptiveCircularProgressIndicator())
+                ? const Center(child: AdaptiveCircularProgressIndicator())
                 : Container(
                     color: Theme.of(context).colorScheme.inversePrimary,
                     child: ReorderableTable(
