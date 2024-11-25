@@ -1,0 +1,1 @@
+This is a quick shopping list app I built in Flutter. It currently stores a single task list in your device's local user app data, as JSON encoded strings, though it is set up to use a temporary Firebase back-end as well.
