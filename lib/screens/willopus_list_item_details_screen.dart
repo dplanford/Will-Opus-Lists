@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/helper/snackbar_helper.dart';
-import 'package:willopuslists/services/list_services.dart';
+import 'package:willopuslists/services/willopus_list_services.dart';
 
 class WillOpusListItemDetailsScreen extends StatefulWidget {
   final WillOpusListItem item;
@@ -44,14 +44,14 @@ class _WillOpusListItemDetailsScreenState extends State<WillOpusListItemDetailsS
               bool doExit = false;
               String snackBarText = '';
               if (widget.item.id == null || widget.item.id!.isEmpty) {
-                if (await ListServices.addItem(widget.item)) {
+                if (await WillOpusListServices.addItem(widget.item)) {
                   snackBarText = 'Item Added!';
                   doExit = true;
                 } else {
                   snackBarText = 'Item failed to add...';
                 }
               } else {
-                if (await ListServices.patchItem(widget.item)) {
+                if (await WillOpusListServices.patchItem(widget.item)) {
                   snackBarText = 'Item Updated!';
                   doExit = true;
                 } else {

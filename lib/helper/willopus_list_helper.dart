@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:reorderables/reorderables.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
-import 'package:willopuslists/services/list_services.dart';
+import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/widgets/willopus_list_tile.dart';
 
-class ListHelper {
+class WillOpusListHelper {
   static List<WillOpusListItem> itemsList = [];
 
   static void sortByCurIndex() {
@@ -32,7 +32,7 @@ class ListHelper {
     for (int i = 0; i < itemsList.length; i = i + 1) {
       if (i != itemsList[i].curIndex) {
         itemsList[i].curIndex = i;
-        ListServices.patchItem(itemsList[i]);
+        WillOpusListServices.patchItem(itemsList[i]);
       }
     }
     // TODO: setup specialized "just update the index for each item" for these sorting changes!
@@ -43,12 +43,12 @@ class ListHelper {
     var tmpItem = itemsList[indexA];
     itemsList.removeAt(indexA);
     itemsList.insert(indexB, tmpItem);
-    ListHelper.updateSortIndexes();
+    WillOpusListHelper.updateSortIndexes();
   }
 
   static List<ReorderableTableRow> tableRows({void Function()? refreshParent}) {
     List<ReorderableTableRow> tableRows = [];
-    for (var item in ListHelper.itemsList) {
+    for (var item in WillOpusListHelper.itemsList) {
       tableRows.add(
         ReorderableTableRow(
           key: ObjectKey(item),

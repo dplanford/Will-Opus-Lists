@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/constants.dart';
 
-class ListServices {
+class WillOpusListServices {
   static bool useOnlineServices = false;
   static late SharedPreferences sharedPreferences;
 
@@ -20,7 +20,7 @@ class ListServices {
   static Future<List<WillOpusListItem>> getAllItems() async {
     List<WillOpusListItem> itemList = [];
 
-    if (ListServices.useOnlineServices) {
+    if (WillOpusListServices.useOnlineServices) {
       var uri = Uri.https(
         kFirebaseUrl,
         '$kTestFile.json',
@@ -65,7 +65,7 @@ class ListServices {
   }
 
   static Future<bool> addItem(WillOpusListItem item) async {
-    if (ListServices.useOnlineServices) {
+    if (WillOpusListServices.useOnlineServices) {
       var uri = Uri.https(
         kFirebaseUrl,
         '$kTestFile.json',
@@ -92,7 +92,7 @@ class ListServices {
   static Future<bool> patchItem(WillOpusListItem item) async {
     if (item.id == null || item.id!.isEmpty) return false;
 
-    if (ListServices.useOnlineServices) {
+    if (WillOpusListServices.useOnlineServices) {
       var patchUrl = Uri.https(
         kFirebaseUrl,
         '$kTestFile/${item.id}.json',
@@ -119,7 +119,7 @@ class ListServices {
   static Future<bool> deleteItem(WillOpusListItem item) async {
     if (item.id == null || item.id!.isEmpty) return false;
 
-    if (ListServices.useOnlineServices) {
+    if (WillOpusListServices.useOnlineServices) {
       var delUrl = Uri.https(
         kFirebaseUrl,
         '$kTestFile/${item.id}.json',
@@ -144,7 +144,7 @@ class ListServices {
   static Future<bool> updateItemCurIndex(WillOpusListItem item) async {
     if (item.id == null || item.id!.isEmpty) return false;
 
-    if (ListServices.useOnlineServices) {
+    if (WillOpusListServices.useOnlineServices) {
       var patchUrl = Uri.https(
         kFirebaseUrl,
         '$kTestFile/${item.id}.json',

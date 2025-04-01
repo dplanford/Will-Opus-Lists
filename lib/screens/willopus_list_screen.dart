@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:reorderables/reorderables.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
-import 'package:willopuslists/helper/list_helper.dart';
+import 'package:willopuslists/helper/willopus_list_helper.dart';
 import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
-import 'package:willopuslists/services/list_services.dart';
+import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/widgets/adaptive_circular_indicator.dart';
 
 class WillOpusScreen extends StatefulWidget {
@@ -30,7 +30,7 @@ class _WillOpusScreenState extends State<WillOpusScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Center(child: Text('Will-Opus Lists')),
         actions: [
-          if (ListServices.useOnlineServices)
+          if (WillOpusListServices.useOnlineServices)
             IconButton(
               icon: const Icon(Icons.sync),
               onPressed: () {
@@ -40,7 +40,7 @@ class _WillOpusScreenState extends State<WillOpusScreen> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () async {
-              var newItem = WillOpusListItem(curIndex: ListHelper.itemsList.length);
+              var newItem = WillOpusListItem(curIndex: WillOpusListHelper.itemsList.length);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => WillOpusListItemDetailsScreen(item: newItem, refreshParent: _fetchData),
@@ -60,10 +60,10 @@ class _WillOpusScreenState extends State<WillOpusScreen> {
                     child: ReorderableTable(
                       onReorder: (a, int b) {
                         setState(() {
-                          ListHelper.reorderListTiles(a, b);
+                          WillOpusListHelper.reorderListTiles(a, b);
                         });
                       },
-                      children: ListHelper.tableRows(refreshParent: _fetchData),
+                      children: WillOpusListHelper.tableRows(refreshParent: _fetchData),
                     ),
                   ),
           ),
@@ -77,15 +77,15 @@ class _WillOpusScreenState extends State<WillOpusScreen> {
   }
 
   Future<void> _fetchData() async {
-    ListHelper.itemsList = [];
+    WillOpusListHelper.itemsList = [];
     setState(() {
       isLoading = true;
     });
-    await ListServices.init();
-    var items = await ListServices.getAllItems();
+    await WillOpusListServices.init();
+    var items = await WillOpusListServices.getAllItems();
     setState(() {
-      ListHelper.itemsList = items;
-      ListHelper.sortByCurIndex();
+      WillOpusListHelper.itemsList = items;
+      WillOpusListHelper.sortByCurIndex();
       isLoading = false;
     });
   }
