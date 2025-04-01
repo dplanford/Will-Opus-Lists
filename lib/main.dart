@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Will-Opus Lists',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: kMrowlPrimaryGreen),
+        colorScheme: ColorScheme.fromSeed(seedColor: kMrowlSomewhatLiteGreen),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
