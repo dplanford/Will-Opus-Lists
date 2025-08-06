@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/helper/snackbar_helper.dart';
+import 'package:willopuslists/helper/willopus_list_helper.dart';
 import 'package:willopuslists/services/willopus_list_services.dart';
 
 class WillOpusListItemDetailsScreen extends StatefulWidget {
@@ -13,10 +14,10 @@ class WillOpusListItemDetailsScreen extends StatefulWidget {
   const WillOpusListItemDetailsScreen({super.key, required this.item, this.refreshParent});
 
   @override
-  State<WillOpusListItemDetailsScreen> createState() => _WillOpusListItemDetailsScreenState();
+  State<WillOpusListItemDetailsScreen> createState() => _WillOpusItemsListDetailsScreenState();
 }
 
-class _WillOpusListItemDetailsScreenState extends State<WillOpusListItemDetailsScreen> {
+class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetailsScreen> {
   final _titleController = TextEditingController();
   final _descController = TextEditingController();
 
@@ -45,6 +46,8 @@ class _WillOpusListItemDetailsScreenState extends State<WillOpusListItemDetailsS
               String snackBarText = '';
               if (widget.item.id == null || widget.item.id!.isEmpty) {
                 if (await WillOpusListServices.addItem(widget.item)) {
+                  WillOpusListHelper.itemsList.insert(0, widget.item);
+                  WillOpusListHelper.updateSortIndexes();
                   snackBarText = 'Item Added!';
                   doExit = true;
                 } else {

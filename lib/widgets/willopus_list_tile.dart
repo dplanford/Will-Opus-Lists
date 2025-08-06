@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/widgets/adaptive_alert_dialog.dart';
-import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
+import 'package:willopuslists/screens/willopus_item_list_details_screen.dart';
 
 class WillOpusListTile extends StatefulWidget {
   final WillOpusListItem item;
@@ -92,7 +92,7 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
             icon: const Icon(Icons.arrow_forward),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => WillOpusListItemDetailsScreen(item: widget.item, refreshParent: widget.refreshParent),
+                builder: (context) => WillOpusItemsListDetailsScreen(item: widget.item, refreshParent: widget.refreshParent),
               ),
             ),
           ),
