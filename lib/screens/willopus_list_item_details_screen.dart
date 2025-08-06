@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/helper/willopus_snackbar_helper.dart';
 import 'package:willopuslists/helper/willopus_list_helper.dart';
@@ -121,8 +119,9 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
                 ),
               ),
             ),
-            if (widget.item.imagePath.isNotEmpty) const SizedBox(height: 24),
-            if (widget.item.imagePath.isNotEmpty) CachedNetworkImage(imageUrl: widget.item.imagePath),
+            // TODO: rwork to do direct rather than cached images, since we will be storing or clouding them in base64 string encoding
+            //if (widget.item.image != null) const SizedBox(height: 24),
+            //if (widget.item.image != null) CachedNetworkImage(imageUrl: widget.item.image.),
           ]),
         ),
       ),

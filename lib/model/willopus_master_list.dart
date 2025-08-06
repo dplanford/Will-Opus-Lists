@@ -31,7 +31,7 @@ class WillOpusMasterList {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    // NOTE: Do not send the id... it is generated and only grabbed.
+    data['id'] = id;
     data['title'] = title;
     data['index'] = curIndex;
     if (items.isNotEmpty) {

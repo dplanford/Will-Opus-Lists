@@ -27,14 +27,16 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
       margin: const EdgeInsets.all(12.0),
       child: Row(
         children: [
-          if (widget.item.imagePath.isNotEmpty)
-            CachedNetworkImage(
-              imageUrl: widget.item.imagePath,
-              fit: BoxFit.fill,
-              width: 64.0,
-              height: 64.0,
-            ),
-          if (widget.item.imagePath.isNotEmpty) const SizedBox(width: 8.0),
+          // TODO: rework this to not use cached images, but instead json encoded base64 images (see WillOpusImage class & Helper)
+          if (widget.item.image != null)
+            if (widget.item.image != null)
+              CachedNetworkImage(
+                imageUrl: widget.item.image!.imageBase64,
+                fit: BoxFit.fill,
+                width: 64.0,
+                height: 64.0,
+              ),
+          if (widget.item.image != null) const SizedBox(width: 8.0),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
