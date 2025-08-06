@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/constants.dart';
 
-class WillOpusList {
+class WillOpusMasterList {
   String? id;
   String title = '';
   Color bkgColor = kMrowlSomewhatLiteGreen;
   List<WillOpusListItem> items = [];
   int curIndex = 0;
 
-  WillOpusList({
+  WillOpusMasterList({
     this.title = '',
     this.curIndex = 0,
     this.bkgColor = kMrowlSomewhatLiteGreen,
     items = const [],
   });
 
-  WillOpusList.fromJson(Map<String, dynamic> json) {
+  WillOpusMasterList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'] ?? '';
     curIndex = json['index'] ?? 0;
