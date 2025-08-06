@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SnackbarHelper {
+class WillOpusSnackbarHelper {
   static void showSnackBar(BuildContext context, String txt) {
     var snackBar = SnackBar(
       content: Text(txt),
