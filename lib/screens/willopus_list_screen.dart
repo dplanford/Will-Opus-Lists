@@ -3,12 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:reorderables/reorderables.dart';
 import 'package:uuid/uuid.dart';
-<<<<<<< Updated upstream
-=======
 import 'package:willopuslists/helper/willopus_master_list_helper.dart';
 import 'package:willopuslists/model/willopus_image.dart';
->>>>>>> Stashed changes
-
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/helper/willopus_list_helper.dart';
 import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
@@ -51,20 +47,12 @@ class _WillOpusScreenState extends State<WillOpusScreen> {
             onPressed: () async {
               var newItem = WillOpusListItem(
                 curIndex: 0,
-<<<<<<< Updated upstream
                 // TODO:
                 //image: WillOpusImage(
                 //  imageBase64: base64.encode(
                 //    utf8.encode(WillOpusImage.TEST_IMAGE),
                 //  ),
                 //),
-=======
-                image: WillOpusImage(
-                  imageBase64: base64.encode(
-                    utf8.encode(WillOpusImage.TEST_IMAGE),
-                  ),
-                ),
->>>>>>> Stashed changes
               );
 
               if (!kUseOnlineServices) {

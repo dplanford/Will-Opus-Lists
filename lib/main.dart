@@ -39,9 +39,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      kSharedPreferences = await SharedPreferences.getInstance();
-    });
+    // TODO: Fix shared prefs!!!!!
+    //WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //  kSharedPreferences = await SharedPreferences.getInstance();
+    //});
   }
 
   @override
