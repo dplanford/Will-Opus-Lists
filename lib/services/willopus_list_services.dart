@@ -39,10 +39,16 @@ class WillOpusListServices {
     } else {
       List<WillOpusListItem> itemList = [];
       try {
+<<<<<<< Updated upstream
         var sharedPrefs = await WillOpusSharedPrefs.shared.getKeys();
         var itemKeys = await sharedPrefs.getKeys();
         for (var itemKey in itemKeys) {
           var data = await WillOpusSharedPrefs.shared.getString(itemKey);
+=======
+        var itemKeys = kSharedPreferences.getKeys();
+        for (var itemKey in itemKeys) {
+          var data = kSharedPreferences.getString(itemKey);
+>>>>>>> Stashed changes
           if (data == null) break;
 
           var item = json.decode(data);
@@ -78,7 +84,11 @@ class WillOpusListServices {
       }
     } else {
       var itemKey = const Uuid().v1();
+<<<<<<< Updated upstream
       await WillOpusSharedPrefs.shared.setString(itemKey, json.encode(item.toJson()));
+=======
+      await kSharedPreferences.setString(itemKey, json.encode(item.toJson()));
+>>>>>>> Stashed changes
       return true;
     }
   }
@@ -105,7 +115,11 @@ class WillOpusListServices {
         return false;
       }
     } else {
+<<<<<<< Updated upstream
       await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
+=======
+      await kSharedPreferences.setString(item.id!, json.encode(item.toJson()));
+>>>>>>> Stashed changes
       return true;
     }
   }
@@ -130,7 +144,11 @@ class WillOpusListServices {
         return false;
       }
     } else {
+<<<<<<< Updated upstream
       await WillOpusSharedPrefs.shared.remove(item.id!);
+=======
+      await kSharedPreferences.remove(item.id!);
+>>>>>>> Stashed changes
       return true;
     }
   }
@@ -158,7 +176,11 @@ class WillOpusListServices {
         return false;
       }
     } else {
+<<<<<<< Updated upstream
       await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
+=======
+      await kSharedPreferences.setString(item.id!, json.encode(item.toJson()));
+>>>>>>> Stashed changes
       return true;
     }
   }
