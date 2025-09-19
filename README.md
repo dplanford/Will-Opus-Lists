@@ -3,7 +3,7 @@ though it is set up to use a temporary Firebase back-end as well.
 
 This app is still a work in progress, and currently broken due to some recent changes to a third-party package... I'm working on it!
 
-It is currently planned to be set up to run with Flutter 3.25.4, and is updated to all the latest packages as of September 18, 2025. It also is warning fixed 
-under the latest flutter_lints 6.0.0 best code practices package.
+It is currently set up to run with the most recent stable Flutter 3.25.4, and is updated to all the latest packages as of September 18, 2025. It also is 
+warning fixed under the latest flutter_lints 6.0.0 best code practices package.
 
 To play with this, you will need to create a new Flutter project, and then copy these files over the existing boilerplate files.
