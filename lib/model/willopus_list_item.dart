@@ -14,7 +14,7 @@ class WillOpusListItem {
     id = json['id'];
     title = json['title'] ?? '';
     desc = json['desc'] ?? '';
-    image = WillOpusImage().fromJson(json['image']) ?? null;
+    image = null; //TODO: WillOpusImage().fromJson(json['image']) ?? null;
     curIndex = json['index'] ?? 0;
     isDone = json['done'] ?? false;
   }
@@ -24,7 +24,7 @@ class WillOpusListItem {
     data['id'] = id;
     data['title'] = title;
     data['desc'] = desc;
-    data['image'] = image != null ? image!.toJson() : null;
+    //data['image'] = image != null ? image!.toJson() : null;
     data['index'] = curIndex;
     data['done'] = isDone;
     return data;

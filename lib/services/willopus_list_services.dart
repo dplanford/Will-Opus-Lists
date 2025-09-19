@@ -3,24 +3,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
+import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
 import 'package:willopuslists/constants.dart';
 
 class WillOpusListServices {
-  static bool useOnlineServices = false;
-  static late SharedPreferences sharedPreferences;
-
-  static Future<void> init() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-  }
-
   static Future<List<WillOpusListItem>> getAllItems() async {
     List<WillOpusListItem> itemList = [];
 
-    if (WillOpusListServices.useOnlineServices) {
+    if (kUseOnlineServices) {
       var uri = Uri.https(
         kFirebaseUrl,
         '$kTestFile.json',
@@ -46,9 +39,10 @@ class WillOpusListServices {
     } else {
       List<WillOpusListItem> itemList = [];
       try {
-        var itemKeys = sharedPreferences.getKeys();
+        var sharedPrefs = await WillOpusSharedPrefs.shared.getKeys();
+        var itemKeys = await sharedPrefs.getKeys();
         for (var itemKey in itemKeys) {
-          var data = sharedPreferences.getString(itemKey);
+          var data = await WillOpusSharedPrefs.shared.getString(itemKey);
           if (data == null) break;
 
           var item = json.decode(data);
@@ -65,7 +59,7 @@ class WillOpusListServices {
   }
 
   static Future<bool> addItem(WillOpusListItem item) async {
-    if (WillOpusListServices.useOnlineServices) {
+    if (kUseOnlineServices) {
       var uri = Uri.https(
         kFirebaseUrl,
         '$kTestFile.json',
@@ -84,7 +78,7 @@ class WillOpusListServices {
       }
     } else {
       var itemKey = const Uuid().v1();
-      await sharedPreferences.setString(itemKey, json.encode(item.toJson()));
+      await WillOpusSharedPrefs.shared.setString(itemKey, json.encode(item.toJson()));
       return true;
     }
   }
@@ -92,7 +86,7 @@ class WillOpusListServices {
   static Future<bool> patchItem(WillOpusListItem item) async {
     if (item.id == null || item.id!.isEmpty) return false;
 
-    if (WillOpusListServices.useOnlineServices) {
+    if (kUseOnlineServices) {
       var patchUrl = Uri.https(
         kFirebaseUrl,
         '$kTestFile/${item.id}.json',
@@ -111,7 +105,7 @@ class WillOpusListServices {
         return false;
       }
     } else {
-      await sharedPreferences.setString(item.id!, json.encode(item.toJson()));
+      await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
       return true;
     }
   }
@@ -119,7 +113,7 @@ class WillOpusListServices {
   static Future<bool> deleteItem(WillOpusListItem item) async {
     if (item.id == null || item.id!.isEmpty) return false;
 
-    if (WillOpusListServices.useOnlineServices) {
+    if (kUseOnlineServices) {
       var delUrl = Uri.https(
         kFirebaseUrl,
         '$kTestFile/${item.id}.json',
@@ -136,7 +130,7 @@ class WillOpusListServices {
         return false;
       }
     } else {
-      await sharedPreferences.remove(item.id!);
+      await WillOpusSharedPrefs.shared.remove(item.id!);
       return true;
     }
   }
@@ -144,7 +138,7 @@ class WillOpusListServices {
   static Future<bool> updateItemCurIndex(WillOpusListItem item) async {
     if (item.id == null || item.id!.isEmpty) return false;
 
-    if (WillOpusListServices.useOnlineServices) {
+    if (kUseOnlineServices) {
       var patchUrl = Uri.https(
         kFirebaseUrl,
         '$kTestFile/${item.id}.json',
@@ -164,7 +158,7 @@ class WillOpusListServices {
         return false;
       }
     } else {
-      await sharedPreferences.setString(item.id!, json.encode(item.toJson()));
+      await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
       return true;
     }
   }

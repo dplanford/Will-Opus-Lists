@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:willopuslists/helper/willopus_base64_helper.dart';
 import 'package:willopuslists/model/willopus_list_item.dart';
+import 'package:willopuslists/helper/willopus_base64_helper.dart';
 import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/widgets/adaptive_alert_dialog.dart';
 import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
@@ -27,6 +27,16 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
       child: Row(
         children: [
           if (widget.item.image != null) WillOpusEncodingHelper.imageFromPath('lib/assets/dpl_dork_FB_03.jpg'),
+          // TODO: rework this to not use cached images, but instead json encoded base64 images (see WillOpusImage class & Helper)
+          //if (widget.item.image != null) Image.memory(base64Decode(widget.item.image!.imageBase64)),
+          /*
+              CachedNetworkImage(
+                imageUrl: widget.item.image!.imageBase64,
+                fit: BoxFit.fill,
+                width: 64.0,
+                height: 64.0,
+              ),
+              */
           if (widget.item.image != null) const SizedBox(width: 8.0),
           Expanded(
             child: Column(
