@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
 class WillOpusImage {
   String? id;
-  String imageBase64 = '';
+  Image? imageBase64;
 
   WillOpusImage({
     this.id = '',
-    this.imageBase64 = '',
+    this.imageBase64,
   });
 
   fromJson(Map<String, dynamic> json) {
