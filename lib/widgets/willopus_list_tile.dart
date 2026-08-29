@@ -22,11 +22,11 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
     double tableWidth = MediaQuery.of(context).size.width - 24;
     return Container(
       width: tableWidth,
-      color: widget.item.isDone ? Theme.of(context).primaryColor : Colors.white,
+      color: widget.item.isCompleted ? Theme.of(context).primaryColor : Colors.white,
       margin: const EdgeInsets.all(12.0),
       child: Row(
         children: [
-          if (widget.item.image != null) WillOpusEncodingHelper.imageFromPath('lib/assets/dpl_dork_FB_03.jpg'),
+          //if (widget.item.image != null) WillOpusEncodingHelper.imageFromPath('lib/assets/dpl_dork_FB_03.jpg'),
           // TODO: rework this to not use cached images, but instead json encoded base64 images (see WillOpusImage class & Helper)
           //if (widget.item.image != null) Image.memory(base64Decode(widget.item.image!.imageBase64)),
           /*
@@ -37,20 +37,20 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
                 height: 64.0,
               ),
               */
-          if (widget.item.image != null) const SizedBox(width: 8.0),
+          //if (widget.item.image != null) const SizedBox(width: 8.0),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   widget.item.title,
-                  style: TextStyle(fontSize: 20.0, color: widget.item.isDone ? Colors.white : Colors.black),
+                  style: TextStyle(fontSize: 20.0, color: widget.item.isCompleted ? Colors.white : Colors.black),
                   softWrap: true,
                 ),
                 const SizedBox(height: 12),
                 Text(
                   widget.item.desc,
-                  style: TextStyle(fontSize: 12.0, color: widget.item.isDone ? Colors.white : Colors.black),
+                  style: TextStyle(fontSize: 12.0, color: widget.item.isCompleted ? Colors.white : Colors.black),
                   softWrap: true,
                 ),
               ],
@@ -60,10 +60,10 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
           Column(
             children: [
               Checkbox(
-                value: widget.item.isDone,
+                value: widget.item.isCompleted,
                 onChanged: (newValue) {
                   setState(() {
-                    widget.item.isDone = newValue ?? false;
+                    widget.item.isCompleted = newValue ?? false;
                   });
                   WillOpusListServices.patchItem(widget.item);
                 },
@@ -71,7 +71,7 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () async {
-                  if (widget.item.isDone) {
+                  if (widget.item.isCompleted) {
                     // item tagged as completed, directly delete it.
                     await WillOpusListServices.deleteItem(widget.item);
                     if (widget.refreshParent != null) {

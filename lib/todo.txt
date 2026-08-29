@@ -1,0 +1,60 @@
+Will Opus Lists TODO:
+========================
+
+Rewrite models & setup:
+    1) List Item Object:
+        - title
+        - description
+        - * isDone... !!!rename variable as isCompleted, is Completed?
+            - is for HAS ITEM BEEN CLICKED DONE! (is checkbox clicked!)
+            - can be active but checked... not yet deleted.
+                - in UI determines item's background color, and whether a "Are you sure" popup dialog appears before deleting
+
+        - id - assigned by server (or internal saving setup with a uuid)
+            - used as they key to the individual object
+            - may not need to be saved in list item server object, since it is used to find it?
+
+        - UI has a checkmark for displaying ready (pale) or done (dark)
+            - this determines saving... saving when ready pops up dialog (sure?) Done just deletes object?
+        
+            - add future item sync icon for imediate item update, or adapt save setup?
+            - Especially when future multiuser sync?
+                - things to figure out....
+
+    2) List Object:
+        - list title
+        - list description
+        - list color?
+    
+        - list of list item keys
+            - order of keys determines list order
+                - re-sorting an item resorts & saved the list object
+        
+        - id - assigned by server (or internal saving setup with a uuid)
+            - used as they key to the individual object
+            - saved (for now) in a global var, or for internal (no server) storage, can be hard-coded
+                - need to use uuid or server key once handling multipl lists in a master object
+    
+    3) Master Object (later) - WillOpus-Lists-Root? WillOpus-Lists-Master? Core? Naming??!!
+        - list of list objects, ordered by key
+        - will need to setup UI screen!
+    
+    4) Grabbing a List Object, from its key:
+        - grab list object from key, async wait....
+        - for each item key in list's key list:
+            - grab item object for key, internally associating it with the key if needed
+
+Future Online Multi-User Server Stuff!
+    - handle when off-line
+        - handle when to sync changes (buttons to sync, pop-up dialogs when conflicts?)
+        - handle simple version control if dual users update an object or list between syncs?
+
+
+
+================================
+
+Data Setup:
+    'master_key': string - key for the master object
+    ...
+    all other objects are found through the keys stored with the master object as Root
+

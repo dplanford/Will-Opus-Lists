@@ -1,22 +1,25 @@
-import 'package:willopuslists/model/willopus_image.dart';
+//import 'package:willopuslists/model/willopus_image.dart';
 
 class WillOpusListItem {
   String? id;
   String title = '';
   String desc = '';
-  WillOpusImage? image;
-  int curIndex = 0;
-  bool isDone = false;
+  //WillOpusImage? image;
+  bool isCompleted = false;
 
-  WillOpusListItem({this.title = '', this.desc = '', this.image, this.curIndex = 0, this.isDone = false});
+  WillOpusListItem({
+    this.title = '',
+    this.desc = '',
+    //this.image,
+    this.isCompleted = false,
+  });
 
   WillOpusListItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'] ?? '';
     desc = json['desc'] ?? '';
-    image = null; //TODO: WillOpusImage().fromJson(json['image']) ?? null;
-    curIndex = json['index'] ?? 0;
-    isDone = json['done'] ?? false;
+    //image = null; //TODO: WillOpusImage().fromJson(json['image']) ?? null;
+    isCompleted = json['done'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
@@ -25,8 +28,7 @@ class WillOpusListItem {
     data['title'] = title;
     data['desc'] = desc;
     //data['image'] = image != null ? image!.toJson() : null;
-    data['index'] = curIndex;
-    data['done'] = isDone;
+    data['done'] = isCompleted;
     return data;
   }
 }

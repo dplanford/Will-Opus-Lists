@@ -1,3 +1,5 @@
+// TODO: REWORK THIS! No more sort indexes, since sorting is handled by key order held by the current list.
+
 import 'package:flutter/material.dart';
 import 'package:reorderables/reorderables.dart';
 
