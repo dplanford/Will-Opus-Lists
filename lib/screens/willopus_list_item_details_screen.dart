@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/helper/willopus_snackbar_helper.dart';
 import 'package:willopuslists/helper/willopus_list_helper.dart';
-import 'package:willopuslists/services/willopus_list_services.dart';
+import 'package:willopuslists/services/willopus_list_item_services.dart';
 
 class WillOpusListItemDetailsScreen extends StatefulWidget {
   final WillOpusListItem item;
@@ -43,7 +43,7 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
               bool doExit = false;
               String snackBarText = '';
               if (widget.item.id == null || widget.item.id!.isEmpty) {
-                if (await WillOpusListServices.addItem(widget.item)) {
+                if (await WillOpusListItemServices.addItem(widget.item)) {
                   WillOpusListHelper.itemsList.insert(0, widget.item);
                   WillOpusListHelper.updateSortIndexes();
                   snackBarText = 'Item Added!';
@@ -52,7 +52,7 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
                   snackBarText = 'Item failed to add...';
                 }
               } else {
-                if (await WillOpusListServices.patchItem(widget.item)) {
+                if (await WillOpusListItemServices.patchItem(widget.item)) {
                   snackBarText = 'Item Updated!';
                   doExit = true;
                 } else {

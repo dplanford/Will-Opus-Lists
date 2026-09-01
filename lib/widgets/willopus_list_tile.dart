@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
-//import 'package:willopuslists/helper/willopus_base64_helper.dart';
-import 'package:willopuslists/services/willopus_list_services.dart';
+import 'package:willopuslists/services/willopus_list_item_services.dart';
 import 'package:willopuslists/widgets/adaptive_alert_dialog.dart';
 import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
 
@@ -65,7 +64,7 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
                   setState(() {
                     widget.item.isCompleted = newValue ?? false;
                   });
-                  WillOpusListServices.patchItem(widget.item);
+                  WillOpusListItemServices.patchItem(widget.item);
                 },
               ),
               IconButton(
@@ -73,7 +72,7 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
                 onPressed: () async {
                   if (widget.item.isCompleted) {
                     // item tagged as completed, directly delete it.
-                    await WillOpusListServices.deleteItem(widget.item);
+                    await WillOpusListItemServices.deleteItem(widget.item);
                     if (widget.refreshParent != null) {
                       widget.refreshParent!();
                     }
@@ -81,7 +80,7 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
                     // not completed, make sure the user wants to delete it.
                     bool delete = await _showDeleteItemDialog();
                     if (delete) {
-                      await WillOpusListServices.deleteItem(widget.item);
+                      await WillOpusListItemServices.deleteItem(widget.item);
                       if (widget.refreshParent != null) {
                         widget.refreshParent!();
                       }
