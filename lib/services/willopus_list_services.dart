@@ -1,15 +1,61 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
-import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 
-import 'package:willopuslists/model/willopus_list_item.dart';
+import 'package:willopuslists/model/willopus_list.dart';
 import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
 import 'package:willopuslists/constants.dart';
 
 class WillOpusListServices {
+  static Future<WillOpusList?> getList(String key) async {
+    if (kUseOnlineServices) {
+      // TODO: setup Firebase service
+      return null;
+    }
+    var map = await WillOpusSharedPrefs.shared.getMapFromJsonKey(key);
+    if (map != null) {
+      return WillOpusList.fromJson(map);
+    }
+    return null;
+  }
+
+  // Adding a new list assumes a null id, which is set by the add process.
+  //  - in local storage, this asigns a uuid
+  //  - in Firebase, this uses the id returned by the Firebase server.
+  static Future<bool> addList(WillOpusList list) async {
+    if (kUseOnlineServices) {
+      // TODO: setup Firebase service
+      return false;
+    }
+    list.id = const Uuid().v1();
+    await WillOpusSharedPrefs.shared.setString(list.id, json.encode(list.toJson()));
+    return true;
+  }
+
+  static Future<bool> patchList(WillOpusList list) async {
+    if (kUseOnlineServices) {
+      // TODO: setup Firebase service
+      return false;
+    }
+
+    await WillOpusSharedPrefs.shared.setString(list.id, json.encode(list.toJson()));
+    return true;
+  }
+
+  static Future<bool> deleteList(WillOpusList list) async {
+    if (list.id == null) return false;
+
+    if (kUseOnlineServices) {
+      // TODO: setup Firebase service
+      return false;
+    }
+
+    await WillOpusSharedPrefs.shared.remove(list.id!);
+    return false;
+  }
+
+/*
+  // TODO: Old code, preserving Firebase hooks, etc.
   static Future<List<WillOpusListItem>> getAllItems() async {
     List<WillOpusListItem> itemList = [];
 
@@ -164,4 +210,5 @@ class WillOpusListServices {
     return true;
     //}
   }
+*/
 }

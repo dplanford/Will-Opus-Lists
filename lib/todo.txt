@@ -77,3 +77,21 @@ Next Steps:
     - list services, update!
 
     - UI should mostly work as is....
+
+From email:
+Services:
+   master:
+       - save/get master object id key
+           - saves the master object id under the local key "master_key"
+           - get the key for object grabbing
+
+       - save/get master object
+           - save (in: willopus-master-list)
+               - saves object to user prefs
+                   - returns id key for the object
+                       - expects the caller to then save the id in the object
+                           - for future Firebase setup that returns the id key after save....
+
+   list:
+       - get/save list object
+           - on save return id key (see above Firebase note).

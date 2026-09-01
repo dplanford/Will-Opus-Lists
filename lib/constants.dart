@@ -8,3 +8,5 @@ const String kTestFile = 'TestList/test';
 //const String kTestFileItem = 'TestList/test/@ID.json';
 
 bool kUseOnlineServices = false;
+
+const String kMasterIDKey = 'master_id';
