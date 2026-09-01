@@ -37,3 +37,5 @@ ios/Flutter/AppFrameworkInfo.plist
 ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme
 /ios
 /ios
+/android
+devtools_options.yaml
