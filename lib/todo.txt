@@ -58,3 +58,22 @@ Data Setup:
     ...
     all other objects are found through the keys stored with the master object as Root
 
+================================
+
+Next Steps:
+
+1) setup master list screen
+    - master_services:
+        - set_master_id (sets master id as 'master_id': object key)
+        - update_master_list
+    - setup a temp test object for master object, with a single empty list & title 'WillOpus Test List'
+    - LATER: setup adding new lists
+        - top right add icon
+        - popup setup dialog (title, list color)
+
+    UI: simple list display, showing each tile: list title and set bkg color
+
+2) Go to current list screen
+    - list services, update!
+
+    - UI should mostly work as is....

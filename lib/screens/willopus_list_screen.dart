@@ -10,14 +10,14 @@ import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/widgets/adaptive_circular_indicator.dart';
 import 'package:willopuslists/constants.dart';
 
-class WillOpusScreen extends StatefulWidget {
-  const WillOpusScreen({super.key});
+class WillOpusListScreen extends StatefulWidget {
+  const WillOpusListScreen({super.key});
 
   @override
-  State<WillOpusScreen> createState() => _WillOpusScreenState();
+  State<WillOpusListScreen> createState() => _WillOpusListScreenState();
 }
 
-class _WillOpusScreenState extends State<WillOpusScreen> {
+class _WillOpusListScreenState extends State<WillOpusListScreen> {
   bool isLoading = false;
 
   @override
@@ -33,37 +33,38 @@ class _WillOpusScreenState extends State<WillOpusScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Center(child: Text('Will-Opus Lists')),
         actions: [
-          if (kUseOnlineServices)
+          if (!isLoading && kUseOnlineServices)
             IconButton(
               icon: const Icon(Icons.sync),
               onPressed: () {
                 _fetchData();
               },
             ),
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () async {
-              var newItem = WillOpusListItem(
-                curIndex: 0,
-                // TODO:
-                //image: WillOpusImage(
-                //  imageBase64: base64.encode(
-                //    utf8.encode(WillOpusImage.TEST_IMAGE),
-                //  ),
-                //),
-              );
+          if (!isLoading)
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () async {
+                var newItem = WillOpusListItem(
+                    //curIndex: 0,
+                    // TODO:
+                    //image: WillOpusImage(
+                    //  imageBase64: base64.encode(
+                    //    utf8.encode(WillOpusImage.TEST_IMAGE),
+                    //  ),
+                    //),
+                    );
 
-              if (!kUseOnlineServices) {
-                newItem.id = const Uuid().v1();
-              }
+                if (!kUseOnlineServices) {
+                  newItem.id = const Uuid().v1();
+                }
 
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => WillOpusListItemDetailsScreen(item: newItem, refreshParent: _fetchData),
-                ),
-              );
-            },
-          ),
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => WillOpusListItemDetailsScreen(item: newItem, refreshParent: _fetchData),
+                  ),
+                );
+              },
+            ),
         ],
       ),
       body: Column(

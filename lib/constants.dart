@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color kMrowlSomewhatLiteGreen = Color(0xFF47a239);
+const String kDefaultListColorHex = 'FFFFFFFF';
 
 const String kFirebaseUrl = 'willopus-lists-default-rtdb.firebaseio.com';
 const String kTestFile = 'TestList/test';

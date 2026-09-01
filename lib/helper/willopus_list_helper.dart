@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:reorderables/reorderables.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
-import 'package:willopuslists/services/willopus_list_services.dart';
+//import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/widgets/willopus_list_tile.dart';
 
 class WillOpusListHelper {
@@ -13,6 +13,7 @@ class WillOpusListHelper {
   static void sortByCurIndex() {
     itemsList.sort(
       (WillOpusListItem a, WillOpusListItem b) {
+        /*
         if (a.curIndex < b.curIndex) {
           return -1;
         } else if (a.curIndex > b.curIndex) {
@@ -20,6 +21,8 @@ class WillOpusListHelper {
         } else {
           return 0;
         }
+        */
+        return 0;
       },
     );
 
@@ -31,6 +34,7 @@ class WillOpusListHelper {
   // specialized service call for just updating a list of items with only curIndex changes...)
   static List<WillOpusListItem> updateSortIndexes() {
     List<WillOpusListItem> updatedItems = [];
+    /*
     for (int i = 0; i < itemsList.length; i = i + 1) {
       if (i != itemsList[i].curIndex) {
         itemsList[i].curIndex = i;
@@ -38,6 +42,7 @@ class WillOpusListHelper {
       }
     }
     // TODO: setup specialized "just update the index for each item" for these sorting changes!
+    */
     return updatedItems;
   }
 

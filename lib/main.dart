@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:willopuslists/screens/willopus_list_screen.dart';
+import 'package:willopuslists/screens/willopus_master_list_screen.dart';
 import 'package:willopuslists/constants.dart';
 
 void main() {
@@ -43,6 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const WillOpusScreen();
+    return const WillOpusMasterListScreen();
   }
 }

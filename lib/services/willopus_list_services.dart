@@ -138,6 +138,7 @@ class WillOpusListServices {
   static Future<bool> updateItemCurIndex(WillOpusListItem item) async {
     if (item.id == null || item.id!.isEmpty) return false;
 
+    /*
     if (kUseOnlineServices) {
       var patchUrl = Uri.https(
         kFirebaseUrl,
@@ -158,8 +159,9 @@ class WillOpusListServices {
         return false;
       }
     } else {
-      await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
-      return true;
-    }
+    */
+    await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
+    return true;
+    //}
   }
 }
