@@ -12,6 +12,7 @@ class WillOpusListServices {
       // TODO: setup Firebase service
       return null;
     }
+
     var map = await WillOpusSharedPrefs.shared.getMapFromJsonKey(key);
     if (map != null) {
       return WillOpusList.fromJson(map);
@@ -20,13 +21,14 @@ class WillOpusListServices {
   }
 
   // Adding a new list assumes a null id, which is set by the add process.
-  //  - in local storage, this asigns a uuid
+  //  - in local storage, this assigns a uuid
   //  - in Firebase, this uses the id returned by the Firebase server.
   static Future<bool> addList(WillOpusList list) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
       return false;
     }
+
     list.id = const Uuid().v1();
     await WillOpusSharedPrefs.shared.setString(list.id, json.encode(list.toJson()));
     return true;

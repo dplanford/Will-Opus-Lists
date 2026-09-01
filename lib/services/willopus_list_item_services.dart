@@ -1,0 +1,58 @@
+import 'dart:convert';
+
+import 'package:uuid/uuid.dart';
+
+import 'package:willopuslists/model/willopus_list_item.dart';
+import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
+import 'package:willopuslists/constants.dart';
+
+class WillOpusListItemServices {
+  static Future<WillOpusListItem?> getItem(String key) async {
+    if (kUseOnlineServices) {
+      // TODO: setup Firebase service
+      return null;
+    }
+
+    var map = await WillOpusSharedPrefs.shared.getMapFromJsonKey(key);
+    if (map != null) {
+      return WillOpusListItem.fromJson(map);
+    }
+    return null;
+  }
+
+  // Adding a new list assumes a null id, which is set by the add process.
+  //  - in local storage, this assigns a uuid
+  //  - in Firebase, this uses the id returned by the Firebase server.
+  static Future<bool> addItem(WillOpusListItem item) async {
+    if (kUseOnlineServices) {
+      // TODO: setup Firebase service
+      return false;
+    }
+
+    item.id = const Uuid().v1();
+    await WillOpusSharedPrefs.shared.setString(item.id, json.encode(item.toJson()));
+    return true;
+  }
+
+  static Future<bool> patchItem(WillOpusListItem item) async {
+    if (kUseOnlineServices) {
+      // TODO: setup Firebase service
+      return false;
+    }
+
+    await WillOpusSharedPrefs.shared.setString(item.id, json.encode(item.toJson()));
+    return true;
+  }
+
+  static Future<bool> deleteItem(WillOpusListItem item) async {
+    if (item.id == null) return false;
+
+    if (kUseOnlineServices) {
+      // TODO: setup Firebase service
+      return false;
+    }
+
+    await WillOpusSharedPrefs.shared.remove(item.id!);
+    return false;
+  }
+}
