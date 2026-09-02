@@ -7,6 +7,7 @@ import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
 import 'package:willopuslists/constants.dart';
 
 class WillOpusListServices {
+  /// Grab a list object from it's key/id.
   static Future<WillOpusList?> getList(String key) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
@@ -20,9 +21,10 @@ class WillOpusListServices {
     return null;
   }
 
-  // Adding a new list assumes a null id, which is set by the add process.
+  /// Add a list object, using it's initial values.
+  // Adding a new list obj assumes a null id, which is set by the add process.
   //  - in local storage, this assigns a uuid
-  //  - in Firebase, this uses the id returned by the Firebase server.
+  //  - in future online (Firebase), this uses the id returned by the Firebase server.
   static Future<bool> addList(WillOpusList list) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
@@ -34,6 +36,7 @@ class WillOpusListServices {
     return true;
   }
 
+  /// Update a list object, using it's key/id.
   static Future<bool> patchList(WillOpusList list) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
@@ -44,6 +47,7 @@ class WillOpusListServices {
     return true;
   }
 
+  /// Delete a list object, using it's key/id.
   static Future<bool> deleteList(WillOpusList list) async {
     if (list.id == null) return false;
 

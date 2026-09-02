@@ -5,6 +5,7 @@ import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
 import 'package:willopuslists/constants.dart';
 
 class WillOpusMasterServices {
+  /// get the master key, the id of the stored master list object.
   static Future<String?> getMasterKey() async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
@@ -14,6 +15,7 @@ class WillOpusMasterServices {
     return await WillOpusSharedPrefs.shared.getString(kMasterIDKey);
   }
 
+  /// set the stored local key to the master list object.
   static Future<bool> setMasterKey(String key) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
@@ -24,6 +26,7 @@ class WillOpusMasterServices {
     return true;
   }
 
+  /// Grab the user's master lists object.
   static Future<WillOpusMasterList?> getMasterList(String key) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
@@ -37,6 +40,7 @@ class WillOpusMasterServices {
     return null;
   }
 
+  /// Set/Update the master lists object.
   static Future<bool> setMasterList(WillOpusMasterList masterList) async {
     if (masterList.id == null || masterList.id!.isEmpty) return false;
 
