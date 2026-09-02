@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/// A super quicky wrapper around the Flutter activity indicator for iOS/Android UIs.
 class AdaptiveCircularProgressIndicator extends StatelessWidget {
   final double radius; // Only used for iOS progress indicator.
   final double strokeWidth; // Only used for non-iOS progress indicator.

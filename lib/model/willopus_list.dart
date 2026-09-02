@@ -1,5 +1,6 @@
 import 'package:willopuslists/constants.dart';
 
+/// A list of items, under a title/color.
 class WillOpusList {
   String? id;
   String title = '';

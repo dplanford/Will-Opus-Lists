@@ -1,5 +1,4 @@
-//import 'package:willopuslists/model/willopus_image.dart';
-
+/// An individual item in a list
 class WillOpusListItem {
   String? id;
   String title = '';

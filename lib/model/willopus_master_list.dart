@@ -1,5 +1,7 @@
 import 'package:willopuslists/model/willopus_list_item.dart';
 
+/// The master (root) list object of all the user's sub-lists...
+/// - the root list of all the user's list objects.
 class WillOpusMasterList {
   String? id;
   List<WillOpusListItem> lists = [];
