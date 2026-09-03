@@ -38,6 +38,8 @@ class WillOpusListServices {
 
   /// Update a list object, using it's key/id.
   static Future<bool> patchList(WillOpusList list) async {
+    if (list.id == null) return false;
+
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
       return false;
