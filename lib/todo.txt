@@ -95,3 +95,46 @@ Services:
    list:
        - get/save list object
            - on save return id key (see above Firebase note).
+
+=========================================
+
+NOT FOR LIST APP! For my other Google Maps golf app....
+Future golf course data? Currently planning a simple hard-coded set for Los Altos 9 hole....
+    - store a set of small data files (XML or similar) with the data for each golf course available
+    - stored on-line
+    - also, online master list of all the available courses & their current on-line links to each course data
+
+    - One place online to store all the data, which can be constantly add to & updated.
+        - each launch loads the master list of courses, which determines the course selection screen.
+        - download from server each course's data upon selection.
+
+List app data stored on Firebase:
+    NOTE: This is just base obj access, not all the user authentication Firebase needs after an open 30 day trial....
+    Encampsolate this & similar code into a helper funtion:
+
+    if (kUseOnlineServices) {
+      var uri = Uri.https(
+        kFirebaseUrl,
+        '$kTestFile.json',
+      );
+
+      try {
+        final response = await http.post(
+          uri,
+          headers: {'Content-Type': 'application/json'},
+          body: json.encode(item.toJson()),
+        );
+        debugPrint('response status code = ${response.statusCode}');
+        return response.statusCode >= 200 && response.statusCode < 300;
+      } catch (err) {
+        return false;
+      }
+
+    File: online_firebase_helper.dart
+    class OnlineFirebaseHelper
+        - static func add Firebase object (in: json body), returns/sets returned Firebase key ID
+        - static func patch Firebase object (in: obj key, json body)
+        - static func delete Firebase object (in: obj key)
+
+        - return appropriate data, and throw appropriate errors!
+
