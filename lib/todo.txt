@@ -138,3 +138,22 @@ List app data stored on Firebase:
 
         - return appropriate data, and throw appropriate errors!
 
+====================================
+
+Additions to master helper:
+
+Get Master List:
+    - grab master key from storage (local key is 'master_ID', to get the stored master key as it's data).
+        - if return null, then need to create a brand new master list (first app launch, no data storage yet)
+    - if returned key is non-null string, use it to grab the master list object
+        - if this returns null, then something went wrong... note error, and then create new master list object.
+
+    - this should be baked in to the access of the master screen init.
+
+    - UI on error:
+        - launch master list screen
+        - on no master key stored, pop-up a dialog:
+            - first time? create a new master list? OK!
+        - on master key exists, but does not return an object:
+            - pop-up error... note that we must create a new master list... OK?
+        - if a master list object is returned, then use it, update it, etc....

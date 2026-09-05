@@ -22,18 +22,20 @@ class WillOpusListServices {
   }
 
   /// Add a list object, using it's initial values.
+  /// Returns the key ID to the new object, null on error.
+  //
   // Adding a new list obj assumes a null id, which is set by the add process.
   //  - in local storage, this assigns a uuid
   //  - in future online (Firebase), this uses the id returned by the Firebase server.
-  static Future<bool> addList(WillOpusList list) async {
+  static Future<String?> addList(WillOpusList list) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
-      return false;
+      return null;
     }
 
     list.id = const Uuid().v1();
     await WillOpusSharedPrefs.shared.setString(list.id, json.encode(list.toJson()));
-    return true;
+    return list.id;
   }
 
   /// Update a list object, using it's key/id.

@@ -43,22 +43,24 @@ class WillOpusMasterServices {
   }
 
   /// Add a master list object, using it's initial values.
-  // Adding a new master list obj assumes a null id, which is set by the add process.
+  /// Returns the key ID to the new object, null on error.
+  //
+  // Adding a new master list obj assumes a null object id, which is set by the add process.
   //  - in local storage, this assigns a uuid
   //  - in future online (Firebase), this uses the id returned by the Firebase server.
-  static Future<bool> addMasterList(WillOpusMasterList masterList) async {
+  static Future<String?> addMasterList(WillOpusMasterList masterList) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
-      return false;
+      return null;
     }
 
     masterList.id = const Uuid().v1();
     await WillOpusSharedPrefs.shared.setString(masterList.id, json.encode(masterList.toJson()));
-    return true;
+    return masterList.id;
   }
 
   /// Update a master list object, using it's key/id.
-  static Future<bool> patchList(WillOpusMasterList masterList) async {
+  static Future<bool> patchMasterList(WillOpusMasterList masterList) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
       return false;
@@ -69,7 +71,9 @@ class WillOpusMasterServices {
   }
 
   /// Delete a master list object, using it's key/id.
-  static Future<bool> deleteList(WillOpusMasterList masterList) async {
+  /// This should never be done in-app unless some emergency reset....
+  /// Set up the capability to match other similar object services.
+  static Future<bool> deleteMasterList(WillOpusMasterList masterList) async {
     if (masterList.id == null) return false;
 
     if (kUseOnlineServices) {
