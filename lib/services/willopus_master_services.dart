@@ -42,7 +42,7 @@ class WillOpusMasterServices {
     return null;
   }
 
-  /// Add a master list object, using it's initial values.
+  /// Add a new master list object, using initial values.
   /// Returns the key ID to the new object, null on error.
   //
   // Adding a new master list obj assumes a null object id, which is set by the add process.

@@ -157,3 +157,8 @@ Get Master List:
         - on master key exists, but does not return an object:
             - pop-up error... note that we must create a new master list... OK?
         - if a master list object is returned, then use it, update it, etc....
+
+On all screens, fetching the screen's data should start with an object key ID...
+    - master screen ... grab master key from local storage, load it's data
+    - list screen ... input: key for the list object, and grab all data for it & sub item objects from services
+    - item detals screen ... input: key for the item object, and only update/delete this item from it's key
