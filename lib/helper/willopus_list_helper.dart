@@ -4,10 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:reorderables/reorderables.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
+import 'package:willopuslists/services/willopus_list_item_services.dart';
 //import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/widgets/willopus_list_tile.dart';
 
 class WillOpusListHelper {
+  static Future<List<WillOpusListItem>> getItemsFromIds(List<String> itemIds) async {
+    List<WillOpusListItem> items = [];
+    for (String id in itemIds) {
+      WillOpusListItem? item = await WillOpusListItemServices.getItem(id);
+      if (item != null) {
+        items.add(item);
+      }
+    }
+    return items;
+  }
+
+  // TODO: All this after this point needs to be reworked or deleted...
   static List<WillOpusListItem> itemsList = [];
 
   static void sortByCurIndex() {

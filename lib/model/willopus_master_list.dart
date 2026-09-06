@@ -1,10 +1,10 @@
-import 'package:willopuslists/model/willopus_list_item.dart';
+import 'package:willopuslists/model/willopus_list.dart';
 
 /// The master (root) list object of all the user's sub-lists...
 /// - the root list of all the user's list objects.
 class WillOpusMasterList {
   String? id;
-  List<WillOpusListItem> lists = [];
+  List<WillOpusList> lists = [];
 
   WillOpusMasterList({
     lists = const [],
@@ -14,7 +14,7 @@ class WillOpusMasterList {
     id = json['id'];
     if (json['itemsList'] != null) {
       json['members'].forEach((v) {
-        lists.add(WillOpusListItem.fromJson(v));
+        lists.add(WillOpusList.fromJson(v));
       });
     }
   }

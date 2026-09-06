@@ -3,21 +3,30 @@ import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 
 import 'package:reorderables/reorderables.dart';
+
+import 'package:willopuslists/model/willopus_list.dart';
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/helper/willopus_list_helper.dart';
-import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
 import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/widgets/adaptive_circular_indicator.dart';
+import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
 import 'package:willopuslists/constants.dart';
 
 class WillOpusListScreen extends StatefulWidget {
-  const WillOpusListScreen({super.key});
+  final String listId = '';
+
+  const WillOpusListScreen(
+    String listId, {
+    super.key,
+  });
 
   @override
   State<WillOpusListScreen> createState() => _WillOpusListScreenState();
 }
 
 class _WillOpusListScreenState extends State<WillOpusListScreen> {
+  WillOpusList? list;
+  List<WillOpusListItem> items = [];
   bool isLoading = false;
 
   @override
@@ -67,42 +76,60 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
             ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: isLoading
-                ? const Center(child: AdaptiveCircularProgressIndicator())
-                : Container(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    child: ReorderableTable(
-                      onReorder: (a, int b) {
-                        setState(() {
-                          WillOpusListHelper.reorderListTiles(a, b);
-                        });
-                      },
-                      children: WillOpusListHelper.tableRows(refreshParent: _fetchData),
-                    ),
-                  ),
-          ),
-          Container(
-            color: Theme.of(context).colorScheme.inversePrimary,
-            height: 64,
-          ),
-        ],
-      ),
+      body: _listBody(),
     );
   }
 
   Future<void> _fetchData() async {
-    WillOpusListHelper.itemsList = [];
+    list = await WillOpusListServices.getList(widget.listId);
+    if (list == null) {
+      setState(() {
+        isLoading = false;
+      });
+      return;
+    }
+
+    List<WillOpusListItem> listItems = await WillOpusListHelper.getItemsFromIds(list!.itemIds);
+
     setState(() {
-      isLoading = true;
-    });
-    var items = await WillOpusListServices.getAllItems();
-    setState(() {
-      WillOpusListHelper.itemsList = items;
-      WillOpusListHelper.sortByCurIndex();
+      items = listItems;
       isLoading = false;
     });
+  }
+
+  Widget _listBody() {
+    if (isLoading) {
+      return const Center(child: AdaptiveCircularProgressIndicator());
+    }
+
+    if (list == null) {
+      return Center(child: Text('ERROR - no list object associated with this key!'));
+    }
+
+    if (list!.itemIds.length <= 0) {
+      return Center(child: Text('No items added to this list yet!'));
+    }
+
+    return Column(
+      children: [
+        Expanded(
+          child: Container(
+            color: Theme.of(context).colorScheme.inversePrimary,
+            child: ReorderableTable(
+              onReorder: (a, int b) {
+                setState(() {
+                  WillOpusListHelper.reorderListTiles(a, b);
+                });
+              },
+              children: WillOpusListHelper.tableRows(refreshParent: _fetchData),
+            ),
+          ),
+        ),
+        Container(
+          color: Theme.of(context).colorScheme.inversePrimary,
+          height: 64,
+        ),
+      ],
+    );
   }
 }

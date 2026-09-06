@@ -43,7 +43,8 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
               bool doExit = false;
               String snackBarText = '';
               if (widget.item.id == null || widget.item.id!.isEmpty) {
-                if (await WillOpusListItemServices.addItem(widget.item)) {
+                String? addedId = await WillOpusListItemServices.addItem(widget.item);
+                if (addedId != null) {
                   WillOpusListHelper.itemsList.insert(0, widget.item);
                   WillOpusListHelper.updateSortIndexes();
                   snackBarText = 'Item Added!';
@@ -56,7 +57,7 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
                   snackBarText = 'Item Updated!';
                   doExit = true;
                 } else {
-                  snackBarText = 'Item failed to updated...';
+                  snackBarText = 'Item failed to update...';
                 }
               }
               _showSnackbar(snackBarText);

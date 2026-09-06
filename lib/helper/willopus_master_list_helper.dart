@@ -3,7 +3,7 @@ import 'package:willopuslists/model/willopus_master_list.dart';
 import 'package:willopuslists/services/willopus_master_services.dart';
 
 class WillOpusMasterListHelper {
-  Future<WillOpusMasterList?> getMaster() async {
+  static Future<WillOpusMasterList?> getMaster() async {
     String? masterId = await WillOpusMasterServices.getMasterKey();
     if (masterId == null) {
       // No master key stored yet... create a new master list object.

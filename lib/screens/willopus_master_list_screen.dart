@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:willopuslists/helper/willopus_color_helper.dart';
+import 'package:willopuslists/helper/willopus_master_list_helper.dart';
 
 import 'package:willopuslists/model/willopus_list.dart';
 import 'package:willopuslists/model/willopus_master_list.dart';
@@ -15,8 +16,6 @@ class WillOpusMasterListScreen extends StatefulWidget {
 
 class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
   WillOpusMasterList? masterList;
-
-  List<WillOpusList> currentLists = [];
 
   bool isLoading = true;
 
@@ -38,7 +37,9 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
               onPressed: () async {
                 WillOpusList? newList = await WillOpusListCreateDialog.show(context);
                 setState(() {
-                  if (newList != null) currentLists.add(newList);
+                  if (masterList != null && newList != null) {
+                    masterList!.lists.add(newList);
+                  }
                 });
               },
               icon: Icon(Icons.add),
@@ -50,16 +51,20 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
   }
 
   Widget _showMasterList() {
-    if (currentLists.length <= 0) {
+    if (masterList == null) {
+      return Center(child: Text('Error - Missing or Mismatched Master List!'));
+    }
+
+    if (masterList!.lists.length <= 0) {
       return Center(child: Text('No lists yet!'));
     }
     return ListView.separated(
-      itemCount: currentLists.length,
+      itemCount: masterList!.lists.length,
       itemBuilder: (context, index) => Container(
-        color: WillOpusColorHelper.colorFromHex(currentLists[index].hexColor),
+        color: WillOpusColorHelper.colorFromHex(masterList!.lists[index].hexColor),
         child: SizedBox(
           height: 150.0,
-          child: Center(child: Text(currentLists[index].title)),
+          child: Center(child: Text(masterList!.lists[index].title)),
         ),
       ),
       separatorBuilder: (context, index) {
@@ -68,8 +73,9 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
     );
   }
 
-  void _fetchData() {
-    // TODO: fetch actual data here!
+  Future<void> _fetchData() async {
+    masterList = await WillOpusMasterListHelper.getMaster();
+
     setState(() {
       isLoading = false;
     });
