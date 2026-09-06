@@ -60,6 +60,9 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
     }
     return ListView.separated(
       itemCount: masterList!.lists.length,
+      // TODO: 1st pass, wrap each container in a tap gesture widget of some sort
+      // (Button instead of SizedBox would work?), tap goes to list screen with that list object's key id.
+      // Probably switch to an actual Card widget, or at least basic ListTile?
       itemBuilder: (context, index) => Container(
         color: WillOpusColorHelper.colorFromHex(masterList!.lists[index].hexColor),
         child: SizedBox(
