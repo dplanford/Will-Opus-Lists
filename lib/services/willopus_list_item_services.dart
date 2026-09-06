@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
+import 'package:willopuslists/helper/firebase_storage_helper.dart';
 import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
 import 'package:willopuslists/constants.dart';
 
@@ -30,7 +31,9 @@ class WillOpusListItemServices {
   static Future<String?> addItem(WillOpusListItem item) async {
     if (kUseOnlineServices) {
       // TODO: setup Firebase service
-      return null;
+      String? newId = await FirebaseStorageHelper.addObject(item.toJson());
+      item.id = newId;
+      return newId;
     }
 
     item.id = const Uuid().v1();
@@ -43,8 +46,7 @@ class WillOpusListItemServices {
     if (item.id == null) return false;
 
     if (kUseOnlineServices) {
-      // TODO: setup Firebase service
-      return false;
+      return (await FirebaseStorageHelper.patchObject(item.id!, item.toJson()));
     }
 
     await WillOpusSharedPrefs.shared.setString(item.id, json.encode(item.toJson()));
@@ -56,8 +58,7 @@ class WillOpusListItemServices {
     if (item.id == null) return false;
 
     if (kUseOnlineServices) {
-      // TODO: setup Firebase service
-      return false;
+      return (FirebaseStorageHelper.deleteObject(item.id!));
     }
 
     await WillOpusSharedPrefs.shared.remove(item.id!);

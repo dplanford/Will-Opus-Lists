@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:uuid/uuid.dart';
+import 'package:willopuslists/helper/firebase_storage_helper.dart';
 
 import 'package:willopuslists/model/willopus_master_list.dart';
 import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
@@ -50,8 +51,9 @@ class WillOpusMasterServices {
   //  - in future online (Firebase), this uses the id returned by the Firebase server.
   static Future<String?> addMasterList(WillOpusMasterList masterList) async {
     if (kUseOnlineServices) {
-      // TODO: setup Firebase service
-      return null;
+      String? newId = await FirebaseStorageHelper.addObject(masterList.toJson());
+      masterList.id = newId;
+      return newId;
     }
 
     masterList.id = const Uuid().v1();
@@ -62,8 +64,7 @@ class WillOpusMasterServices {
   /// Update a master list object, using it's key/id.
   static Future<bool> patchMasterList(WillOpusMasterList masterList) async {
     if (kUseOnlineServices) {
-      // TODO: setup Firebase service
-      return false;
+      return (await FirebaseStorageHelper.patchObject(masterList.id!, masterList.toJson()));
     }
 
     await WillOpusSharedPrefs.shared.setString(masterList.id, json.encode(masterList.toJson()));
@@ -77,8 +78,7 @@ class WillOpusMasterServices {
     if (masterList.id == null) return false;
 
     if (kUseOnlineServices) {
-      // TODO: setup Firebase service
-      return false;
+      return (FirebaseStorageHelper.deleteObject(masterList.id!));
     }
 
     await WillOpusSharedPrefs.shared.remove(masterList.id);
