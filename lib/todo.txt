@@ -177,3 +177,7 @@ Master screen list cards (1st pass):
 
     - ALL wrapped in a tappable container with an onPressed func call like a button.
         - could be an adapted TextButton?
+
+Color selection popup change against core popup dialog?
+    - build it's widget with a semi-transparent border/margin?
+    - it pops up the same size as the base list create popup, and overlays it, so displey it with some transpancy against the source popup.
