@@ -165,6 +165,15 @@ On all screens, fetching the screen's data should start with an object key ID...
 
 ========================================
 
-BIG NEW TODO:
+BIG NEW TODO (for future Firebase cloud storage?):
 What if the user delete's his app, has to start over, but on-line cloud data still exists... 
     - can I store the master-key-id also on the user's Firebase cloud in a way it can be globally accessed without an object key... just for the authenticated user? a recovery key to the on-line stored master key, which could restore the entire list database for the user....
+
+Master screen list cards (1st pass):
+    - top bar is a simple color header bar, displaying the hex stored color of the list.
+    - then largish string title of the list.
+        - possibly add a smaller description string option to add/display?
+        - thi would also need UI textfield/textarea additions.
+
+    - ALL wrapped in a tappable container with an onPressed func call like a button.
+        - could be an adapted TextButton?
