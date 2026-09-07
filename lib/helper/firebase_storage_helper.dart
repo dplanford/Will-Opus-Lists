@@ -6,17 +6,23 @@ import 'package:willopuslists/constants.dart';
 
 /// Firebase Cloud storage access helper.
 /// NOTE: This is preliminary, and based on working code from an older test of Firebase services.
-/// This test used a temporary 30 day trial access to an open development Firebase cloud account,
-/// with no authentication needed. Any future actual implementation of Firebase cloud storage would
-/// need the app to handle authentication, especially if I expand this to larger multi-user
-/// functionality.
+/// This older test used a temporary 30 day trial access to an open development Firebase cloud
+/// account, with no authentication needed. Any future actual implementation of Firebase cloud
+/// storage would need the app to handle authentication, especially if I expand this to larger
+/// multi-user functionality.
 ///
-/// NOTE: All services used in this app generally follow the Firebase model of add/patch/delete of
-/// JSON data objects. This includes adapting this model to local storage to maximize future Firebase
-/// possible usage.
+/// NOTE: All services used in this app generally follow the Firebase model of get/add/patch/delete
+/// of JSON data objects. This includes adapting this model to matching local storage to maximize
+/// future Firebase adaptations.
 ///
-/// This code will currently fail if you set the on-line flag (my old 30 day test Firebase account is long dead).
+/// This code will currently fail if you set the cloud on-line flag on any of the app's service
+/// calls (my old 30 day test Firebase account is long dead).
+///
 /// This code is included for future usage, and as an example.
+///
+/// NOTE: This currently uses simple direct HTTP communications with the Firebase server (per their
+/// old tutorials). Proper future setup to handle user authentication on each HTTP request & error
+/// handling might be better handled by a Flutter tool like Dio.
 ///
 class FirebaseStorageHelper {
   /// Add a Firebase JSON object, returning the Firebase generated access key.
