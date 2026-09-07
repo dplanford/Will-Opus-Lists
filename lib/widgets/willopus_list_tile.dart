@@ -5,6 +5,8 @@ import 'package:willopuslists/services/willopus_list_item_services.dart';
 import 'package:willopuslists/widgets/adaptive_alert_dialog.dart';
 import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
 
+/// Display a WillOpusListItem as a list tile.
+/// Includes a refresh parent function call if this item is updated.
 class WillOpusListTile extends StatefulWidget {
   final WillOpusListItem item;
   final void Function()? refreshParent;

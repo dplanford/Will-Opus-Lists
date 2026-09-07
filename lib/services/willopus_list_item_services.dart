@@ -32,7 +32,7 @@ class WillOpusListItemServices {
   //
   // Adding a new list item assumes a null id, which is set by the add process.
   //  - in local storage, this assigns a uuid
-  //  - in future online (Firebase), this uses the id returned by the Firebase server.
+  //  - in online cloud storage (Firebase), this uses the id returned by the Firebase server.
   static Future<String?> addItem(
     WillOpusListItem item, {
     bool onCloud = false,
@@ -49,7 +49,7 @@ class WillOpusListItemServices {
     return item.id;
   }
 
-  /// Update a list item object, using it's key/id.
+  /// Update a list item object, using it's key/id and updated data.
   static Future<bool> patchItem(
     WillOpusListItem item, {
     bool onCloud = false,

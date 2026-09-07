@@ -6,21 +6,20 @@ import 'package:willopuslists/constants.dart';
 
 /// Firebase Cloud storage access helper.
 /// NOTE: This is preliminary, and based on working code from an older test of Firebase services.
-/// This test used a temporary 30 day trial access to a development Firebase cloud account, with no
-/// authentication needed.
+/// This test used a temporary 30 day trial access to an open development Firebase cloud account,
+/// with no authentication needed. Any future actual implementation of Firebase cloud storage would
+/// need the app to handle authentication, especially if I expand this to larger multi-user
+/// functionality.
 ///
 /// NOTE: All services used in this app generally follow the Firebase model of add/patch/delete of
 /// JSON data objects. This includes adapting this model to local storage to maximize future Firebase
 /// possible usage.
 ///
-/// This code will currently fail if you set the on-line flag (not a valid Firebase account set up).
-/// It's included for future usage, and as an example.
-///
-/// TODO: If I ever do add Firebase cloud storage to the app, I need to move the kUseOnlineServices
-/// global test variable into an input for each service call... default to local, but set the flag
-/// for sending to cloud.
+/// This code will currently fail if you set the on-line flag (my old 30 day test Firebase account is long dead).
+/// This code is included for future usage, and as an example.
 ///
 class FirebaseStorageHelper {
+  /// Add a Firebase JSON object, returning the Firebase generated access key.
   static Future<String?> addObject(Map<String, dynamic> data) async {
     var uri = Uri.https(
       kFirebaseUrl,
@@ -43,6 +42,7 @@ class FirebaseStorageHelper {
     }
   }
 
+  /// Path/Update an existing Firebase JSON object, from it's Firebase key and new data.
   static Future<bool> patchObject(String key, Map<String, dynamic> data) async {
     var uri = Uri.https(
       kFirebaseUrl,
@@ -64,6 +64,7 @@ class FirebaseStorageHelper {
     }
   }
 
+  /// Delete a Firebase JSON object using it's Firebase key.
   static Future<bool> deleteObject(String key) async {
     var uri = Uri.https(
       kFirebaseUrl,

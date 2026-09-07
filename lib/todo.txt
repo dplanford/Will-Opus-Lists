@@ -162,3 +162,9 @@ On all screens, fetching the screen's data should start with an object key ID...
     - master screen ... grab master key from local storage, load it's data
     - list screen ... input: key for the list object, and grab all data for it & sub item objects from services
     - item detals screen ... input: key for the item object, and only update/delete this item from it's key
+
+========================================
+
+BIG NEW TODO:
+What if the user delete's his app, has to start over, but on-line cloud data still exists... 
+    - can I store the master-key-id also on the user's Firebase cloud in a way it can be globally accessed without an object key... just for the authenticated user? a recovery key to the on-line stored master key, which could restore the entire list database for the user....

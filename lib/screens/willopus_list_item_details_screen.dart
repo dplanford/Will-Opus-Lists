@@ -5,6 +5,7 @@ import 'package:willopuslists/helper/willopus_snackbar_helper.dart';
 import 'package:willopuslists/helper/willopus_list_helper.dart';
 import 'package:willopuslists/services/willopus_list_item_services.dart';
 
+/// Screen for displaying/adding a list item.
 class WillOpusListItemDetailsScreen extends StatefulWidget {
   final WillOpusListItem item;
   final void Function()? refreshParent;

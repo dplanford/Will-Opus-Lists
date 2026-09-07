@@ -6,6 +6,8 @@ import 'package:willopuslists/widgets/adaptive_alert_dialog.dart';
 import 'package:willopuslists/widgets/color_picker_dialog.dart';
 import 'package:willopuslists/constants.dart';
 
+/// A popup dialog for creating a new list of items.
+/// Returns a WillOpusList filled with a title and background color, plus and empty list of items.
 class WillOpusListCreateDialog {
   static Future<WillOpusList?> show(BuildContext context) async {
     bool cancelled = false;

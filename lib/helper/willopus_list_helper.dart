@@ -9,6 +9,7 @@ import 'package:willopuslists/services/willopus_list_item_services.dart';
 import 'package:willopuslists/widgets/willopus_list_tile.dart';
 
 class WillOpusListHelper {
+  /// Return a matching list of loaded items from a list of key IDs for the stored item objects.
   static Future<List<WillOpusListItem>> getItemsFromIds(List<String> itemIds) async {
     List<WillOpusListItem> items = [];
     for (String id in itemIds) {

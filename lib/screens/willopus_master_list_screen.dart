@@ -7,6 +7,8 @@ import 'package:willopuslists/model/willopus_master_list.dart';
 import 'package:willopuslists/widgets/adaptive_circular_indicator.dart';
 import 'package:willopuslists/widgets/willopus_list_create_dialog.dart';
 
+/// A screen for displaying the user's master/main list screen... the screen showing all the user's
+/// color-coded lists.
 class WillOpusMasterListScreen extends StatefulWidget {
   const WillOpusMasterListScreen({super.key});
 

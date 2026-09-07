@@ -1,4 +1,4 @@
-/// An individual item in a list
+/// An individual item in a list.
 class WillOpusListItem {
   String? id;
   String title = '';

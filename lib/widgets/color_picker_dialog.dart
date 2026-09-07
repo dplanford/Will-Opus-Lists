@@ -3,9 +3,13 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-// TODO: Possibly switch to a simple color picker (16 basic colors), plus a hex entry text field?
-// A simpiler dialog than full color wheel
-//    - leave color wheel as an advanced option?
+/// A Color picker dialog, showing a color wheel, as well as a text field for entering a HEX string color.
+/// Returns: the selected color's HEX string value.
+///
+/// TODO: Possibly switch to a simple color picker (16 basic colors), plus a hex entry text field?
+/// A simpiler dialog than full color wheel
+///    - leave color wheel as an advanced option?
+///
 class ColorPickerDialog {
   /// A modal color picker dialog.
   static Future<String?> pickColor({

@@ -30,9 +30,9 @@ class WillOpusListServices {
   /// Add a list object, using it's initial values.
   /// Returns the key ID to the new object, null on error.
   //
-  // Adding a new list obj assumes a null id, which is set by the add process.
+  // Adding a new list assumes a null id, which is set by the add process.
   //  - in local storage, this assigns a uuid
-  //  - in future online (Firebase), this uses the id returned by the Firebase server.
+  //  - in online cloud storage (Firebase), this uses the id returned by the Firebase server.
   static Future<String?> addList(
     WillOpusList list, {
     bool onCloud = false,
