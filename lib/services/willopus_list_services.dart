@@ -5,12 +5,17 @@ import 'package:uuid/uuid.dart';
 import 'package:willopuslists/model/willopus_list.dart';
 import 'package:willopuslists/helper/firebase_storage_helper.dart';
 import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
-import 'package:willopuslists/constants.dart';
 
+/// List object storage services.
+/// Inputting the "onCloud = true" input on any service call that includes it sends the
+/// object data call to the Firebase cloud service, rather than local storage services.
 class WillOpusListServices {
   /// Grab a list object from it's key/id.
-  static Future<WillOpusList?> getList(String key) async {
-    if (kUseOnlineServices) {
+  static Future<WillOpusList?> getList(
+    String key, {
+    bool onCloud = false,
+  }) async {
+    if (onCloud) {
       // TODO: setup Firebase service
       return null;
     }
@@ -28,8 +33,11 @@ class WillOpusListServices {
   // Adding a new list obj assumes a null id, which is set by the add process.
   //  - in local storage, this assigns a uuid
   //  - in future online (Firebase), this uses the id returned by the Firebase server.
-  static Future<String?> addList(WillOpusList list) async {
-    if (kUseOnlineServices) {
+  static Future<String?> addList(
+    WillOpusList list, {
+    bool onCloud = false,
+  }) async {
+    if (onCloud) {
       String? newId = await FirebaseStorageHelper.addObject(list.toJson());
       list.id = newId;
       return newId;
@@ -41,10 +49,13 @@ class WillOpusListServices {
   }
 
   /// Update a list object, using it's key/id.
-  static Future<bool> patchList(WillOpusList list) async {
+  static Future<bool> patchList(
+    WillOpusList list, {
+    bool onCloud = false,
+  }) async {
     if (list.id == null) return false;
 
-    if (kUseOnlineServices) {
+    if (onCloud) {
       return (await FirebaseStorageHelper.patchObject(list.id!, list.toJson()));
     }
 
@@ -53,10 +64,13 @@ class WillOpusListServices {
   }
 
   /// Delete a list object, using it's key/id.
-  static Future<bool> deleteList(WillOpusList list) async {
+  static Future<bool> deleteList(
+    WillOpusList list, {
+    bool onCloud = false,
+  }) async {
     if (list.id == null) return false;
 
-    if (kUseOnlineServices) {
+    if (onCloud) {
       return (FirebaseStorageHelper.deleteObject(list.id!));
     }
 

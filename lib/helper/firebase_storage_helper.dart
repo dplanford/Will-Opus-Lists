@@ -4,6 +4,22 @@ import 'package:http/http.dart' as http;
 
 import 'package:willopuslists/constants.dart';
 
+/// Firebase Cloud storage access helper.
+/// NOTE: This is preliminary, and based on working code from an older test of Firebase services.
+/// This test used a temporary 30 day trial access to a development Firebase cloud account, with no
+/// authentication needed.
+///
+/// NOTE: All services used in this app generally follow the Firebase model of add/patch/delete of
+/// JSON data objects. This includes adapting this model to local storage to maximize future Firebase
+/// possible usage.
+///
+/// This code will currently fail if you set the on-line flag (not a valid Firebase account set up).
+/// It's included for future usage, and as an example.
+///
+/// TODO: If I ever do add Firebase cloud storage to the app, I need to move the kUseOnlineServices
+/// global test variable into an input for each service call... default to local, but set the flag
+/// for sending to cloud.
+///
 class FirebaseStorageHelper {
   static Future<String?> addObject(Map<String, dynamic> data) async {
     var uri = Uri.https(

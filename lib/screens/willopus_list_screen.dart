@@ -42,6 +42,7 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Center(child: Text('Will-Opus Lists')),
         actions: [
+          /*
           if (!isLoading && kUseOnlineServices)
             IconButton(
               icon: const Icon(Icons.sync),
@@ -49,10 +50,12 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
                 _fetchData();
               },
             ),
+          */
           if (!isLoading)
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () async {
+                // TODO: Fix! New UUID/key should now be handled by add service call...
                 var newItem = WillOpusListItem(
                     //curIndex: 0,
                     // TODO:

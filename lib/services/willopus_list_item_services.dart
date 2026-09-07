@@ -5,13 +5,18 @@ import 'package:uuid/uuid.dart';
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/helper/firebase_storage_helper.dart';
 import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
-import 'package:willopuslists/constants.dart';
 
+/// List Item object storage services.
+/// Inputting the "onCloud = true" input on any service call that includes it sends the
+/// object data call to the Firebase cloud service, rather than local storage services.
 class WillOpusListItemServices {
   /// grab a list item from it's key/id.
-  static Future<WillOpusListItem?> getItem(String key) async {
-    if (kUseOnlineServices) {
-      // TODO: setup Firebase service
+  static Future<WillOpusListItem?> getItem(
+    String key, {
+    bool onCloud = false,
+  }) async {
+    if (onCloud) {
+      // TODO: Missed this Firebase call!
       return null;
     }
 
@@ -28,8 +33,11 @@ class WillOpusListItemServices {
   // Adding a new list item assumes a null id, which is set by the add process.
   //  - in local storage, this assigns a uuid
   //  - in future online (Firebase), this uses the id returned by the Firebase server.
-  static Future<String?> addItem(WillOpusListItem item) async {
-    if (kUseOnlineServices) {
+  static Future<String?> addItem(
+    WillOpusListItem item, {
+    bool onCloud = false,
+  }) async {
+    if (onCloud) {
       // TODO: setup Firebase service
       String? newId = await FirebaseStorageHelper.addObject(item.toJson());
       item.id = newId;
@@ -42,10 +50,13 @@ class WillOpusListItemServices {
   }
 
   /// Update a list item object, using it's key/id.
-  static Future<bool> patchItem(WillOpusListItem item) async {
+  static Future<bool> patchItem(
+    WillOpusListItem item, {
+    bool onCloud = false,
+  }) async {
     if (item.id == null) return false;
 
-    if (kUseOnlineServices) {
+    if (onCloud) {
       return (await FirebaseStorageHelper.patchObject(item.id!, item.toJson()));
     }
 
@@ -54,10 +65,13 @@ class WillOpusListItemServices {
   }
 
   /// Delete a list item object, using it's key/id.
-  static Future<bool> deleteItem(WillOpusListItem item) async {
+  static Future<bool> deleteItem(
+    WillOpusListItem item, {
+    bool onCloud = false,
+  }) async {
     if (item.id == null) return false;
 
-    if (kUseOnlineServices) {
+    if (onCloud) {
       return (FirebaseStorageHelper.deleteObject(item.id!));
     }
 

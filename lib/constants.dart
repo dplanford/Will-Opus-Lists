@@ -7,6 +7,4 @@ const String kFirebaseUrl = 'willopus-lists-default-rtdb.firebaseio.com';
 const String kTestFile = 'TestList/test';
 //const String kTestFileItem = 'TestList/test/@ID.json';
 
-bool kUseOnlineServices = false;
-
 const String kMasterIDKey = 'master_id';
