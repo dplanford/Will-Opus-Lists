@@ -65,6 +65,10 @@ Updated README.md (once I figure out the Markdown formatting ;-)
 
 <App details, blah, blah>
 
+assets/
+    - any assets (icons, images, sound files, etc.) that are local to the app's data.
+    - depending on the app setup, this directory might move (see the pubspec.yaml file for the app's specific direction)
+
 model/
     - core data objects used by this app. While some may be purely for local app use, many are defined to be JSON encoded/decoded for storage & recovery.
 
@@ -80,11 +84,22 @@ services/
         - however, most calls include an override flag to try to send the data object to a Firebase cloud setup
             - this cloud setup is not yet set up! But the core code exists as an example, and for future work.
 
+menu/
+    - classes & Flutter widgets dedicated for menu items & selection dialogs.
+
 widgets/
     - useful Flutter widgets... this includes simple things like a widget that switches between an iOS/Android styled wait spinner depending on run platform, to app specific list tiles.
 
 screens/
     - the full screens used by the app. All should be based on a Scaffold screen widget, usually with an AppBar.
+
+root:
+    - main.dart
+        - the root start of the app, kept simple.
+    - constants.dart
+        - globally constant values, such as Firebase server URL hooks, and default app color values.
+    - pubspec.yaml
+        - the core Flutter build setup, defining included external packages, assets & testing hooks, etc.
 
 =============================
 
