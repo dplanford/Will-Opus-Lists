@@ -10,6 +10,7 @@ class WillOpusMasterListHelper {
   /// Only one master list object should ever exist for a user!
   ///
   static Future<WillOpusMasterList?> getMaster() async {
+    // Grab the locally stored master key to the master list object.
     String? masterId = await WillOpusMasterServices.getMasterKey();
     if (masterId == null) {
       // No master key stored yet... create a new master list object.
@@ -20,9 +21,11 @@ class WillOpusMasterListHelper {
         WillOpusMasterServices.setMasterKey(masterId);
         return masterList;
       }
+      // Error - catch all is sometheng went wrong.
       return null;
     }
 
+    // Now that we have the master key, try to grab the master object from storage.
     WillOpusMasterList? masterList = await WillOpusMasterServices.getMasterList(masterId);
     if (masterList == null) {
       // Error... we have a stored key, but no associated object.
