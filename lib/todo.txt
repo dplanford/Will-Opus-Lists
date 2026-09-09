@@ -85,3 +85,24 @@ widgets/
 
 screens/
     - the full screens used by the app. All should be based on a Scaffold screen widget, usually with an AppBar.
+
+=============================
+
+Next app steps....
+
+Test basic master screen APIs...
+
+Setup WillOpusMasterListTile widget
+    - similar to list tile.... UI is:
+        - top header bar shows hex color
+        - title
+        - smaller font description
+        - click on to go to that list
+        - edit icon (in tile) to update the list settings (title/desc/hexcolor)
+
+Setup display as Reorderable tiles
+    - see how it works with list tiles
+
+Obviously, get individual lists working again!
+    - Mostly should work? On older code?
+    - need to re-do the reordering setup (and then also do it for the master screen!)
