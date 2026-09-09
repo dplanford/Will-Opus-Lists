@@ -35,7 +35,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    // TODO: Check for initial binding before doing anything?
+    //  - that initial wait at app start before doing anything?
+
     // TODO: Fix shared prefs!!!!!
+    // I think fixed with first access? Make sure any try async waits!?
     //WidgetsBinding.instance.addPostFrameCallback((_) async {
     //  kSharedPreferences = await SharedPreferences.getInstance();
     //});

@@ -52,4 +52,36 @@ Master screen list cards (1st pass):
 
 Color selection popup change against core popup dialog?
     - build it's widget with a semi-transparent border/margin?
-    - it pops up the same size as the base list create popup, and overlays it, so displey it with some transpancy against the source popup.
+    - it pops up the same size as the base list create popup, and overlays it, so display it with some transpancy against the source popup.
+
+    - As I noted (but maybe lost)... simplify the color selection dialog, with the full color wheel an advanced option?
+        - a 16 base color toolbar might be enough for basic usage?
+        - also, dump the alpha channel on the full color wheel?
+            - and in the hex storage? 6 chars for full RGB... maybe don't need 8 chars for RGBA?
+
+===========================================
+
+Updated README.md (once I figure out the Markdown formatting ;-)
+
+<App details, blah, blah>
+
+model/
+    - core data objects used by this app. While some may be purely for local app use, many are defined to be JSON encoded/decoded for storage & recovery.
+
+helper/
+    - various helper classes with useful functionality. Some are simple wrappers around general Flutter capabilities (such as the tiny SnackBar helper). Others are more specific to app functionality.
+
+bloc/
+    - if the app uses Flutter BLoC event/state streaming of storage calls, this is where the calls, event & state classes, and bloc repositories would be defined.
+
+services/
+    - the low level data storage calls, and all core low-level server side API calls.
+        - for this app, most service calls are defined to default to local storage (using the app's local user-prefs)
+        - however, most calls include an override flag to try to send the data object to a Firebase cloud setup
+            - this cloud setup is not yet set up! But the core code exists as an example, and for future work.
+
+widgets/
+    - useful Flutter widgets... this includes simple things like a widget that switches between an iOS/Android styled wait spinner depending on run platform, to app specific list tiles.
+
+screens/
+    - the full screens used by the app. All should be based on a Scaffold screen widget, usually with an AppBar.
