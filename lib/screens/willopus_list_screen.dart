@@ -37,6 +37,9 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // TODO: Adjust top appbar header to display a thin color bar with the list's hex-color
+        // - on top of the string title display....
+        // - Small Column widget for the title, rather than just a centered text widget....
         title: const Center(child: Text('Will-Opus Lists')),
         actions: [
           /*
