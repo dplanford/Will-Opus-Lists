@@ -6,6 +6,7 @@ import 'package:willopuslists/model/willopus_list.dart';
 import 'package:willopuslists/model/willopus_master_list.dart';
 import 'package:willopuslists/widgets/adaptive_circular_indicator.dart';
 import 'package:willopuslists/widgets/willopus_list_create_dialog.dart';
+import 'package:willopuslists/widgets/willopus_list_tile.dart';
 
 /// A screen for displaying the user's master/main list screen... the screen showing all the user's
 /// color-coded lists.
@@ -60,21 +61,11 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
     if (masterList!.lists.length <= 0) {
       return Center(child: Text('No lists yet!'));
     }
+
     return ListView.separated(
       itemCount: masterList!.lists.length,
-      // TODO: 1st pass, wrap each container in a tap gesture widget of some sort
-      // (Button instead of SizedBox would work?), tap goes to list screen with that list object's key id.
-      // Probably switch to an actual Card widget, or at least basic ListTile?
-      itemBuilder: (context, index) => Container(
-        color: WillOpusColorHelper.colorFromHex(masterList!.lists[index].hexColor),
-        child: SizedBox(
-          height: 150.0,
-          child: Center(child: Text(masterList!.lists[index].title)),
-        ),
-      ),
-      separatorBuilder: (context, index) {
-        return Divider(color: Colors.grey); // Custom separator
-      },
+      itemBuilder: (context, index) => WillOpusListTile(list: masterList!.lists[index]),
+      separatorBuilder: (context, index) => Divider(color: Colors.grey), // Custom separator
     );
   }
 

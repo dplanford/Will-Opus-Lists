@@ -57,6 +57,8 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
               icon: const Icon(Icons.add),
               onPressed: () async {
                 // TODO: Fix! New UUID/key should now be handled by add service call...
+                // TODO: FIX THIS!
+                /*
                 var newItem = WillOpusListItem(
                     //curIndex: 0,
                     // TODO:
@@ -76,6 +78,7 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
                     builder: (context) => WillOpusListItemDetailsScreen(item: newItem, refreshParent: _fetchData),
                   ),
                 );
+                */
               },
             ),
         ],
