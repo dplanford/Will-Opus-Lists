@@ -74,7 +74,7 @@ class WillOpusListHelper {
         ReorderableTableRow(
           key: ObjectKey(item),
           children: [
-            WillOpusListTile(
+            WillOpusListItemTile(
               item: item,
               refreshParent: refreshParent,
             ),
