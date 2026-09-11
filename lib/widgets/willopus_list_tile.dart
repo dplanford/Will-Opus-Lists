@@ -35,54 +35,60 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
       width: tableWidth,
       //color: widget.item.isCompleted ? Theme.of(context).primaryColor : Colors.white,
       margin: const EdgeInsets.all(12.0),
-      // TODO: wrap in a tap gesture widget for going to the list display details screen....
-      // This must respect the overlay of tile buttons (edit/delete) over the general tap behavior.
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+      // TODO: Trying TextButton as a widget wrapper with a simple onPressed tap behavior....
+      //  - might not be ideal for a list tile object?
+      //  - MUST TEST overlay buttons on this tile! (edit/delete)....
+      child: TextButton(
+        onPressed: () {
+          // TODO: Go to this individual list's screen....
+        },
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 32.0,
+                    child: Container(color: WillOpusColorHelper.colorFromHex(widget.list.hexColor)),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    widget.list.title,
+                    //style: TextStyle(fontSize: 20.0, color: widget.list.isCompleted ? Colors.white : Colors.black),
+                    softWrap: true,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    widget.list.desc,
+                    //style: TextStyle(fontSize: 12.0, color: widget.item.isCompleted ? Colors.white : Colors.black),
+                    softWrap: true,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8.0),
+            Column(
               children: [
-                SizedBox(
-                  height: 32.0,
-                  child: Container(color: WillOpusColorHelper.colorFromHex(widget.list.hexColor)),
+                IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () async {
+                    // TODO: popup to edit list dialog, and save any edits....
+                    // Should be same as add new list dialog, with slightly different hooks....
+                  },
                 ),
-                const SizedBox(height: 12),
-                Text(
-                  widget.list.title,
-                  //style: TextStyle(fontSize: 20.0, color: widget.list.isCompleted ? Colors.white : Colors.black),
-                  softWrap: true,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  widget.list.desc,
-                  //style: TextStyle(fontSize: 12.0, color: widget.item.isCompleted ? Colors.white : Colors.black),
-                  softWrap: true,
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () async {
+                    // TODO: popup "are you sure" dialog before deleting this list and all it's sub-items?
+                    // Need new delete entire list helper func?
+                    //  - delete all sub-items, then delete main list?
+                  },
                 ),
               ],
             ),
-          ),
-          const SizedBox(width: 8.0),
-          Column(
-            children: [
-              IconButton(
-                icon: Icon(Icons.edit),
-                onPressed: () async {
-                  // TODO: popup to edit list dialog, and save any edits....
-                  // Should be same as add new list dialog, with slightly different hooks....
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () async {
-                  // TODO: popup "are you sure" dialog before deleting this list and all it's sub-items?
-                  // Need new delete entire list helper func?
-                  //  - delete all sub-items, then delete main list?
-                },
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

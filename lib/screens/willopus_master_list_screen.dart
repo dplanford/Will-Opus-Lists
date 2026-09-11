@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:willopuslists/helper/willopus_color_helper.dart';
 import 'package:willopuslists/helper/willopus_master_list_helper.dart';
 
 import 'package:willopuslists/model/willopus_list.dart';
@@ -71,6 +70,7 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
 
   Future<void> _fetchData() async {
     masterList = await WillOpusMasterListHelper.getMaster();
+    // TODO: If master list exists, grab each of the lists it controls?
 
     setState(() {
       isLoading = false;
