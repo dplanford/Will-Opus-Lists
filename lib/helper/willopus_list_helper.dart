@@ -6,7 +6,7 @@ import 'package:reorderables/reorderables.dart';
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/services/willopus_list_item_services.dart';
 //import 'package:willopuslists/services/willopus_list_services.dart';
-import 'package:willopuslists/widgets/willopus_list_tile.dart';
+import 'package:willopuslists/widgets/willopus_list_item_tile.dart';
 
 class WillOpusListHelper {
   /// Return a matching list of loaded items from a list of key IDs for the stored item objects.
