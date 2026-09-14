@@ -1,5 +1,10 @@
 /// An individual item in a list.
 class WillOpusListItem {
+  static String _kID = 'id';
+  static String _kTitle = 'title';
+  static String _kDesc = 'desc';
+  static String _kCompleted = 'done';
+
   String? id;
   String title = '';
   String desc = '';
@@ -14,20 +19,20 @@ class WillOpusListItem {
   });
 
   WillOpusListItem.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'] ?? '';
-    desc = json['desc'] ?? '';
+    id = json[_kID];
+    title = json[_kTitle] ?? '';
+    desc = json[_kDesc] ?? '';
+    isCompleted = json[_kCompleted] ?? false;
     //image = null; //TODO: WillOpusImage().fromJson(json['image']) ?? null;
-    isCompleted = json['done'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['id'] = id;
-    data['title'] = title;
-    data['desc'] = desc;
+    data[_kID] = id;
+    data[_kTitle] = title;
+    data[_kDesc] = desc;
+    data[_kCompleted] = isCompleted;
     //data['image'] = image != null ? image!.toJson() : null;
-    data['done'] = isCompleted;
     return data;
   }
 }

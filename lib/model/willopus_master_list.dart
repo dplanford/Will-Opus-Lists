@@ -1,6 +1,9 @@
 /// The master (root) list object of all the user's sub-lists...
 /// NOTE: Only one of these objects should exist for a single user of this app.
 class WillOpusMasterList {
+  static String _kID = 'id';
+  static String _kListsIds = 'lists_ids';
+
   String? id;
   List<String> listsIds = [];
 
@@ -9,9 +12,9 @@ class WillOpusMasterList {
   });
 
   WillOpusMasterList.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    if (json['lists_ids'] != null) {
-      json['lists_ids'].forEach((v) {
+    id = json[_kID];
+    if (json[_kListsIds] != null) {
+      json[_kListsIds].forEach((v) {
         listsIds.add(v);
       });
     }
@@ -19,8 +22,8 @@ class WillOpusMasterList {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['id'] = id;
-    data['lists_ids'] = listsIds;
+    data[_kID] = id;
+    data[_kListsIds] = listsIds;
     return data;
   }
 }
