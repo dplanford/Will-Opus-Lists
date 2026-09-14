@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class WillOpusSharedPrefs {
   static late SharedPreferences shared;
 
-  static init() async {
+  static Future<void> init() async {
     shared = await SharedPreferences.getInstance();
   }
 

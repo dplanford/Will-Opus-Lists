@@ -4,8 +4,10 @@ import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
 import 'package:willopuslists/screens/willopus_master_list_screen.dart';
 import 'package:willopuslists/constants.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await WillOpusSharedPrefs.init();
 
   runApp(const MyApp());
 }
@@ -35,12 +37,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-    // Initialize local storage.
-    WillOpusSharedPrefs.init();
-  }
+  //@override
+  //void initState() {
+  //  super.initState();
+  //  // Initialize local storage.
+  //}
 
   @override
   Widget build(BuildContext context) {
