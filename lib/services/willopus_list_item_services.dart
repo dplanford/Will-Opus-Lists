@@ -20,7 +20,7 @@ class WillOpusListItemServices {
       return null;
     }
 
-    var map = await WillOpusSharedPrefs.shared.getMapFromJsonKey(key);
+    var map = await WillOpusSharedPrefs.getMapFromJsonKey(key);
     if (map != null) {
       return WillOpusListItem.fromJson(map);
     }
@@ -45,7 +45,7 @@ class WillOpusListItemServices {
     }
 
     item.id = const Uuid().v1();
-    await WillOpusSharedPrefs.shared.setString(item.id, json.encode(item.toJson()));
+    await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
     return item.id;
   }
 
@@ -60,8 +60,11 @@ class WillOpusListItemServices {
       return (await FirebaseStorageHelper.patchObject(item.id!, item.toJson()));
     }
 
-    await WillOpusSharedPrefs.shared.setString(item.id, json.encode(item.toJson()));
-    return true;
+    if (item.id != null) {
+      await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
+      return true;
+    }
+    return false;
   }
 
   /// Delete a list item object, using it's key/id.
@@ -75,7 +78,10 @@ class WillOpusListItemServices {
       return (FirebaseStorageHelper.deleteObject(item.id!));
     }
 
-    await WillOpusSharedPrefs.shared.remove(item.id!);
+    if (item.id != null) {
+      await WillOpusSharedPrefs.shared.remove(item.id!);
+      return true;
+    }
     return false;
   }
 }

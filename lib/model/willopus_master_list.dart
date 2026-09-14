@@ -1,21 +1,18 @@
-import 'package:willopuslists/model/willopus_list.dart';
-
 /// The master (root) list object of all the user's sub-lists...
-/// - the root list of all the user's list objects.
 /// NOTE: Only one of these objects should exist for a single user of this app.
 class WillOpusMasterList {
   String? id;
-  List<WillOpusList> lists = [];
+  List<String> listsIds = [];
 
   WillOpusMasterList({
-    lists = const [],
+    listsIds = const [],
   });
 
   WillOpusMasterList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    if (json['itemsList'] != null) {
-      json['members'].forEach((v) {
-        lists.add(WillOpusList.fromJson(v));
+    if (json['lists_ids'] != null) {
+      json['lists_ids'].forEach((v) {
+        listsIds.add(v);
       });
     }
   }
@@ -23,9 +20,7 @@ class WillOpusMasterList {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
     data['id'] = id;
-    if (lists.isNotEmpty) {
-      data['itemsList'] = lists.map((v) => v.toJson()).toList();
-    }
+    data['lists_ids'] = listsIds;
     return data;
   }
 }
