@@ -10,20 +10,39 @@ import 'package:willopuslists/constants.dart';
 import 'package:willopuslists/l10n/app_localizations.dart';
 
 /// A popup dialog for creating a new list of items.
-/// Returns a WillOpusList filled with a title and background color, plus and empty list of items.
+/// Returns a WillOpusList filled with a title and background color,
+/// plus a null id & empty list of items.
+///
+/// If an existing list object is input, then the dialog edits it.
 ///
 /// TODO: Add description text field/text area input/editing!
 ///   - WillOpusList.desc, newly added!
 ///
-class WillOpusListCreateDialog {
-  static Future<WillOpusList?> show(BuildContext context) async {
+class WillOpusListEditDialog {
+  static Future<WillOpusList?> show(
+    BuildContext context, {
+    WillOpusList? list,
+  }) async {
     bool cancelled = false;
-    String listColorHex = kDefaultListColorHex;
+
+    String listColorHex = list != null ? list.hexColor : kDefaultListColorHex;
     Color displayColor = WillOpusColorHelper.colorFromHex(listColorHex);
+
+    String addOrEditString = '';
+    if (list == null) {
+      addOrEditString = AppLocalizations.of(context)!.editListAdd;
+    } else {
+      addOrEditString = AppLocalizations.of(context)!.editListUpdate;
+    }
+
     TextEditingController titleController = TextEditingController();
-    var titleField = TextField(
+    if (list != null) titleController.text = list.title;
+    TextField titleField = TextField(
       controller: titleController,
-      decoration: InputDecoration(hintText: 'Select List Title', fillColor: Colors.white),
+      decoration: InputDecoration(
+        hintText: AppLocalizations.of(context)!.createListSelectTitle,
+        fillColor: Colors.white,
+      ),
     );
 
     await showDialog(
@@ -66,7 +85,7 @@ class WillOpusListCreateDialog {
               },
             ),
             TextButton(
-              child: Text(AppLocalizations.of(context)!.createListAdd),
+              child: Text(addOrEditString),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -76,7 +95,15 @@ class WillOpusListCreateDialog {
       },
     );
 
+    // Cancelled, return nothing.
     if (cancelled) return null;
+    // Editing existing list, update it.
+    if (list != null) {
+      list.title = titleField.controller!.text;
+      list.hexColor = listColorHex;
+      return list;
+    }
+    // Return a new list.
     return WillOpusList(
       title: titleField.controller!.text,
       hexColor: listColorHex,

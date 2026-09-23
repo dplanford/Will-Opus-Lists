@@ -27,7 +27,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get delete => 'Eliminar';
 
   @override
-  String get deleteQuery => '¿Eliminar @?';
+  String get deleteQuery => '¿Eliminar \"@\"?';
 
   @override
   String get screenTitleAddItem => 'Añadir Elemento';
@@ -58,10 +58,16 @@ class AppLocalizationsEs extends AppLocalizations {
       'ERROR - No hay ningún objeto de lista asociado a este ID!';
 
   @override
+  String get createListSelectTitle => 'Seleccionar título de la lista';
+
+  @override
   String get createListSelectColor => 'Seleccionar color de la lista';
 
   @override
-  String get createListAdd => 'Añadir nueva lista';
+  String get editListAdd => 'Añadir nueva lista';
+
+  @override
+  String get editListUpdate => 'Actualizar lista';
 
   @override
   String get masterNoLists => '¡Todavía no hay listas!';
@@ -83,4 +89,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get snackbarItemUpdateFailed => 'No se pudo actualizar el elemento...';
+
+  @override
+  String get snackbarListUpdated => 'Lista \"@\" actualizada';
+
+  @override
+  String get snackbarListUpdateErr => 'La lista \"@\" no se pudo actualizar.';
+
+  @override
+  String get snackbarListDeleted => 'Se ha eliminado la lista \"@\".';
+
+  @override
+  String get snackbarListDeleteErr => 'No se pudo eliminar la lista \"@\".';
 }

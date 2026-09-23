@@ -14,7 +14,7 @@
     "@cancel": {},
     "delete": "Delete",
     "@delete": {},
-    "deleteQuery": "Delete @?",
+    "deleteQuery": "Delete List \"@\"?",
     "@deleteQuery": {},
 
     "screenTitleAddItem": "Add Item",
@@ -38,10 +38,14 @@
     "listErrNoObj": "ERROR - no list object associated with this key!",
     "@listErrNoObj": {},
 
+    "createListSelectTitle": "Select List Title",
+    "@createListSelectTitle": {},
     "createListSelectColor": "Select List Color",
     "@createListSelectColor": {},
-    "createListAdd": "Add New List",
-    "@createListAdd": {},
+    "editListAdd": "Add New List",
+    "@editListAdd": {},
+    "editListUpdate": "Update List",
+    "@editListUpdate": {},
 
     "masterNoLists": "No lists yet!",
     "@masterNoLists": {},
@@ -57,5 +61,13 @@
     "snackbarItemUpdated": "Item Updated!",
     "@snackbarItemUpdated": {},
     "snackbarItemUpdateFailed": "Item failed to update...",
-    "@snackbarItemUpdateFailed": {}
+    "@snackbarItemUpdateFailed": {},
+    "snackbarListUpdated": "List \"@\" Updated",
+    "@snackbarListUpdated": {},
+    "snackbarListUpdateErr": "List \"@\" failed to update.",
+    "@snackbarListUpdateErr": {},
+    "snackbarListDeleted": "List \"@\" Removed",
+    "@snackbarListDeleted": {},
+    "snackbarListDeleteErr": "List \"@\" failed to remove.",
+    "@snackbarListDeleteErr": {}
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
-import 'package:willopuslists/helper/willopus_snackbar_helper.dart';
+import 'package:willopuslists/helper/snackbar_helper.dart';
 import 'package:willopuslists/helper/willopus_list_helper.dart';
 import 'package:willopuslists/services/willopus_list_item_services.dart';
 
@@ -144,7 +144,7 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
   }
 
   void _showSnackbar(String txt) {
-    WillOpusSnackbarHelper.showSnackBar(context, txt);
+    SnackbarHelper.showSnackBar(context, txt);
   }
 
   void _exitScreen() {

@@ -14,7 +14,7 @@
     "@cancel": {},
     "delete": "Eliminar",
     "@delete": {},
-    "deleteQuery": "¿Eliminar @?",
+    "deleteQuery": "¿Eliminar \"@\"?",
     "@deleteQuery": {},
 
     "screenTitleAddItem": "Añadir Elemento",
@@ -38,10 +38,14 @@
     "listErrNoObj": "ERROR - No hay ningún objeto de lista asociado a este ID!",
     "@listErrNoObj": {},
 
+    "createListSelectTitle": "Seleccionar título de la lista",
+    "@createListSelectTitle": {},
     "createListSelectColor": "Seleccionar color de la lista",
     "@createListSelectColor": {},
-    "createListAdd": "Añadir nueva lista",
-    "@createListAdd": {},
+    "editListAdd": "Añadir nueva lista",
+    "@editListAdd": {},
+    "editListUpdate": "Actualizar lista",
+    "@editListUpdate": {},
 
     "masterNoLists": "¡Todavía no hay listas!",
     "@masterNoLists": {},
@@ -57,5 +61,13 @@
     "snackbarItemUpdated": "Elemento actualizado!",
     "@snackbarItemUpdated": {},
     "snackbarItemUpdateFailed": "No se pudo actualizar el elemento...",
-    "@snackbarItemUpdateFailed": {}
+    "@snackbarItemUpdateFailed": {},
+    "snackbarListUpdated": "Lista \"@\" actualizada",
+    "@snackbarListUpdated": {},
+    "snackbarListUpdateErr": "La lista \"@\" no se pudo actualizar.",
+    "@snackbarListUpdateErr": {},
+    "snackbarListDeleted": "Se ha eliminado la lista \"@\".",
+    "@snackbarListDeleted": {},
+    "snackbarListDeleteErr": "No se pudo eliminar la lista \"@\".",
+    "@snackbarListDeleteErr": {}
 }

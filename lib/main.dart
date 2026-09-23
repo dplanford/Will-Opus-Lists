@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: kMrowlSomewhatLiteGreen),
+        colorScheme: ColorScheme.fromSeed(seedColor: kBaseAppColor),
         useMaterial3: true,
       ),
       home: const MyHomePage(),

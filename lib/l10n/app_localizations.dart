@@ -137,7 +137,7 @@ abstract class AppLocalizations {
   /// No description provided for @deleteQuery.
   ///
   /// In en, this message translates to:
-  /// **'Delete @?'**
+  /// **'Delete List \"@\"?'**
   String get deleteQuery;
 
   /// No description provided for @screenTitleAddItem.
@@ -194,17 +194,29 @@ abstract class AppLocalizations {
   /// **'ERROR - no list object associated with this key!'**
   String get listErrNoObj;
 
+  /// No description provided for @createListSelectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select List Title'**
+  String get createListSelectTitle;
+
   /// No description provided for @createListSelectColor.
   ///
   /// In en, this message translates to:
   /// **'Select List Color'**
   String get createListSelectColor;
 
-  /// No description provided for @createListAdd.
+  /// No description provided for @editListAdd.
   ///
   /// In en, this message translates to:
   /// **'Add New List'**
-  String get createListAdd;
+  String get editListAdd;
+
+  /// No description provided for @editListUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Update List'**
+  String get editListUpdate;
 
   /// No description provided for @masterNoLists.
   ///
@@ -247,6 +259,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Item failed to update...'**
   String get snackbarItemUpdateFailed;
+
+  /// No description provided for @snackbarListUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'List \"@\" Updated'**
+  String get snackbarListUpdated;
+
+  /// No description provided for @snackbarListUpdateErr.
+  ///
+  /// In en, this message translates to:
+  /// **'List \"@\" failed to update.'**
+  String get snackbarListUpdateErr;
+
+  /// No description provided for @snackbarListDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'List \"@\" Removed'**
+  String get snackbarListDeleted;
+
+  /// No description provided for @snackbarListDeleteErr.
+  ///
+  /// In en, this message translates to:
+  /// **'List \"@\" failed to remove.'**
+  String get snackbarListDeleteErr;
 }
 
 class _AppLocalizationsDelegate

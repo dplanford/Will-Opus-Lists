@@ -27,7 +27,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get delete => 'Delete';
 
   @override
-  String get deleteQuery => 'Delete @?';
+  String get deleteQuery => 'Delete List \"@\"?';
 
   @override
   String get screenTitleAddItem => 'Add Item';
@@ -57,10 +57,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get listErrNoObj => 'ERROR - no list object associated with this key!';
 
   @override
+  String get createListSelectTitle => 'Select List Title';
+
+  @override
   String get createListSelectColor => 'Select List Color';
 
   @override
-  String get createListAdd => 'Add New List';
+  String get editListAdd => 'Add New List';
+
+  @override
+  String get editListUpdate => 'Update List';
 
   @override
   String get masterNoLists => 'No lists yet!';
@@ -82,4 +88,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get snackbarItemUpdateFailed => 'Item failed to update...';
+
+  @override
+  String get snackbarListUpdated => 'List \"@\" Updated';
+
+  @override
+  String get snackbarListUpdateErr => 'List \"@\" failed to update.';
+
+  @override
+  String get snackbarListDeleted => 'List \"@\" Removed';
+
+  @override
+  String get snackbarListDeleteErr => 'List \"@\" failed to remove.';
 }
