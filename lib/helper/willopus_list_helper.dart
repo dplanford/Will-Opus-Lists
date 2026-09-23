@@ -1,4 +1,4 @@
-// TODO: REWORK THIS! No more sort indexes, since sorting is handled by key order held by the current list.
+// TODO: REWORK THIS! No more sort indexes, since sorting is handled by ID order held by the current list.
 
 import 'package:flutter/material.dart';
 import 'package:reorderables/reorderables.dart';
@@ -9,7 +9,7 @@ import 'package:willopuslists/services/willopus_list_item_services.dart';
 import 'package:willopuslists/widgets/willopus_list_item_tile.dart';
 
 class WillOpusListHelper {
-  /// Return a matching list of loaded items from a list of key IDs for the stored item objects.
+  /// Return a matching list of loaded items from a list of IDs for the stored item objects.
   static Future<List<WillOpusListItem>> getItemsFromIds(List<String> itemIds) async {
     List<WillOpusListItem> items = [];
     for (String id in itemIds) {

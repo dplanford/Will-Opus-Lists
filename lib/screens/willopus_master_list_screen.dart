@@ -62,6 +62,7 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
     );
   }
 
+  /// Show the master screen core.
   Widget _showMasterList() {
     if (isLoading) {
       return const Center(child: AdaptiveCircularProgressIndicator());
@@ -82,6 +83,7 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
     );
   }
 
+  /// Grab the master list & all it's sub-lists from storage.
   Future<void> _fetchData() async {
     masterList = await WillOpusMasterListHelper.getMaster();
     if (masterList != null) {

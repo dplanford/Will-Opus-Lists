@@ -10,20 +10,20 @@ import 'package:willopuslists/helper/storage_local_helper.dart';
 /// Inputting the "onCloud = true" input on any service call that includes it sends the
 /// object data call to the Firebase cloud service, rather than local storage services.
 class WillOpusListServices {
-  /// Grab a list object from it's key/id.
+  /// Grab a list object from it's id.
   static Future<WillOpusList?> getList(
-    String key, {
+    String id, {
     bool onCloud = false,
   }) async {
     if (onCloud) {
-      var map = await StorageFirebaseHelper.getMapFromJsonKey(key);
+      var map = await StorageFirebaseHelper.getMapFromJson(id);
       if (map != null) {
         return WillOpusList.fromJson(map);
       }
       return null;
     }
 
-    var map = await StorageLocalHelper.getMapFromJsonKey(key);
+    var map = await StorageLocalHelper.getMapFromJson(id);
     if (map != null) {
       return WillOpusList.fromJson(map);
     }

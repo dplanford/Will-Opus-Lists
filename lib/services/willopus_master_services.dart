@@ -29,14 +29,14 @@ class WillOpusMasterServices {
     bool onCloud = false,
   }) async {
     if (onCloud) {
-      var map = await StorageFirebaseHelper.getMapFromJsonKey(key);
+      var map = await StorageFirebaseHelper.getMapFromJson(key);
       if (map != null) {
         return WillOpusMasterList.fromJson(map);
       }
       return null;
     }
 
-    var map = await StorageLocalHelper.getMapFromJsonKey(key);
+    var map = await StorageLocalHelper.getMapFromJson(key);
     if (map != null) {
       return WillOpusMasterList.fromJson(map);
     }

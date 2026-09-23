@@ -10,7 +10,11 @@ class WillOpusListItemDetailsScreen extends StatefulWidget {
   final WillOpusListItem item;
   final void Function()? refreshParent;
 
-  const WillOpusListItemDetailsScreen({super.key, required this.item, this.refreshParent});
+  const WillOpusListItemDetailsScreen({
+    super.key,
+    required this.item,
+    this.refreshParent,
+  });
 
   @override
   State<WillOpusListItemDetailsScreen> createState() => _WillOpusItemsListDetailsScreenState();

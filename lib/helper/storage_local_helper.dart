@@ -10,11 +10,11 @@ class StorageLocalHelper {
     shared = await SharedPreferences.getInstance();
   }
 
-  /// Load an generic object from it's key...
+  /// Load an generic object from it's id.
   /// check if the return can be JSON decoded into a Flutter Map<String, dynamic>.
-  /// return the Map, or null on any failure.
-  static Future<Map<String, dynamic>?> getMapFromJsonKey(String key) async {
-    String? data = await shared.getString(key);
+  /// return the map, or null on any failure.
+  static Future<Map<String, dynamic>?> getMapFromJson(String id) async {
+    String? data = await shared.getString(id);
     if (data == null) return null;
     var item = json.decode(data);
     if (item is Map<String, dynamic>) {

@@ -25,18 +25,18 @@ import 'package:willopuslists/constants.dart';
 /// handling might be better handled by a Flutter tool like Dio.
 ///
 class StorageFirebaseHelper {
-  /// Get a Firebase stored JSON object from it's key.
-  static Future<String?> getObjectJson(String key) async {
+  /// Get a Firebase stored JSON object from it's id.
+  static Future<String?> getObjectJson(String id) async {
     // TODO: Add get JSON string from Firebase!
     // Need to lookup HTTP setup with Firebase.
     return null;
   }
 
-  /// Load an generic object from it's key...
+  /// Load an generic object from it's id.
   /// check if the return can be JSON decoded into a Flutter Map<String, dynamic>.
-  /// return the Map, or null on any failure.
-  static Future<Map<String, dynamic>?> getMapFromJsonKey(String key) async {
-    String? data = await getObjectJson(key);
+  /// return the map, or null on any failure.
+  static Future<Map<String, dynamic>?> getMapFromJson(String id) async {
+    String? data = await getObjectJson(id);
     if (data == null) return null;
     var item = json.decode(data);
     if (item is Map<String, dynamic>) {
@@ -45,7 +45,7 @@ class StorageFirebaseHelper {
     return null;
   }
 
-  /// Add a Firebase JSON object, returning the Firebase generated access key.
+  /// Add a Firebase JSON object, returning the Firebase generated access key as the object's id.
   static Future<String?> addObject(Map<String, dynamic> data) async {
     var uri = Uri.https(
       kFirebaseUrl,

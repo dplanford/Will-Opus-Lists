@@ -7,7 +7,11 @@ class WillOpusListTile extends StatefulWidget {
   final WillOpusList list;
   final void Function()? refreshParent;
 
-  const WillOpusListTile({super.key, required this.list, this.refreshParent});
+  const WillOpusListTile({
+    super.key,
+    required this.list,
+    this.refreshParent,
+  });
 
   @override
   State<WillOpusListTile> createState() => _WillOpusListTileState();
