@@ -5,13 +5,20 @@ import 'package:willopuslists/services/willopus_list_item_services.dart';
 import 'package:willopuslists/widgets/adaptive_alert_dialog.dart';
 import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
 
+// Auto-generated
+import 'package:willopuslists/l10n/app_localizations.dart';
+
 /// Display a WillOpusListItem as a list tile.
 /// Includes a refresh parent function call if this item is updated.
 class WillOpusListItemTile extends StatefulWidget {
   final WillOpusListItem item;
   final void Function()? refreshParent;
 
-  const WillOpusListItemTile({super.key, required this.item, this.refreshParent});
+  const WillOpusListItemTile({
+    super.key,
+    required this.item,
+    this.refreshParent,
+  });
 
   @override
   State<WillOpusListItemTile> createState() => _WillOpusListItemTileState();
@@ -96,7 +103,10 @@ class _WillOpusListItemTileState extends State<WillOpusListItemTile> {
             icon: const Icon(Icons.arrow_forward),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => WillOpusListItemDetailsScreen(item: widget.item, refreshParent: widget.refreshParent),
+                builder: (context) => WillOpusListItemDetailsScreen(
+                  item: widget.item,
+                  refreshParent: widget.refreshParent,
+                ),
               ),
             ),
           ),
@@ -108,22 +118,25 @@ class _WillOpusListItemTileState extends State<WillOpusListItemTile> {
   Future<bool> _showDeleteItemDialog() async {
     bool doDelete = false;
 
+    String deleteQuery = AppLocalizations.of(context)!.deleteQuery;
+    deleteQuery.replaceFirst('@', widget.item.title);
+
     await showDialog(
       context: context,
       builder: (context) {
         return AdaptiveAlertDialog(
-          title: const Text('Delete This Item?'),
-          content: Text('Delete ${widget.item.title}?'),
+          title: Text(AppLocalizations.of(context)!.itemDeleteQuery),
+          content: Text(deleteQuery),
           actions: [
             TextButton(
-              child: const Text('Cancel'),
+              child: Text(AppLocalizations.of(context)!.cancel),
               onPressed: () {
                 doDelete = false;
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: const Text('Delete'),
+              child: Text(AppLocalizations.of(context)!.delete),
               onPressed: () {
                 doDelete = true;
                 Navigator.of(context).pop();

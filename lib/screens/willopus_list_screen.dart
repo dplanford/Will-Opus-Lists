@@ -8,6 +8,9 @@ import 'package:willopuslists/helper/willopus_list_helper.dart';
 import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/widgets/adaptive_circular_indicator.dart';
 
+// Auto-generated
+import 'package:willopuslists/l10n/app_localizations.dart';
+
 /// Screen for displaying/updating a list of task items.
 class WillOpusListScreen extends StatefulWidget {
   final String listId = '';
@@ -40,7 +43,7 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
         // TODO: Adjust top appbar header to display a thin color bar with the list's hex-color
         // - on top of the string title display....
         // - Small Column widget for the title, rather than just a centered text widget....
-        title: const Center(child: Text('Will-Opus Lists')),
+        title: Center(child: Text(list != null ? list!.title : AppLocalizations.of(context)!.baseError)),
         actions: [
           /*
           if (!isLoading && kUseOnlineServices)
@@ -84,34 +87,18 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
     );
   }
 
-  Future<void> _fetchData() async {
-    list = await WillOpusListServices.getList(widget.listId);
-    if (list == null) {
-      setState(() {
-        isLoading = false;
-      });
-      return;
-    }
-
-    List<WillOpusListItem> listItems = await WillOpusListHelper.getItemsFromIds(list!.itemIds);
-
-    setState(() {
-      items = listItems;
-      isLoading = false;
-    });
-  }
-
+  /// Show the core list screen.
   Widget _listBody() {
     if (isLoading) {
       return const Center(child: AdaptiveCircularProgressIndicator());
     }
 
     if (list == null) {
-      return Center(child: Text('ERROR - no list object associated with this key!'));
+      return Center(child: Text(AppLocalizations.of(context)!.listErrNoObj));
     }
 
     if (list!.itemIds.length <= 0) {
-      return Center(child: Text('No items added to this list yet!'));
+      return Center(child: Text(AppLocalizations.of(context)!.listEmpty));
     }
 
     return Column(
@@ -135,5 +122,23 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
         ),
       ],
     );
+  }
+
+  /// Get a list and all it's items from storage.
+  Future<void> _fetchData() async {
+    list = await WillOpusListServices.getList(widget.listId);
+    if (list == null) {
+      setState(() {
+        isLoading = false;
+      });
+      return;
+    }
+
+    List<WillOpusListItem> listItems = await WillOpusListHelper.getItemsFromIds(list!.itemIds);
+
+    setState(() {
+      items = listItems;
+      isLoading = false;
+    });
   }
 }

@@ -1,0 +1,61 @@
+{
+    "@@locale": "en",
+
+    "appTitle": "Will-Opus Lists",
+    "@appTitle": {},
+    "baseError": "ERROR",
+    "@baseError": {},
+    "standardError": "Error! Something went wrong!",
+    "@standardError": {},
+
+    "ok": "OK",
+    "@ok": {},
+    "cancel": "Cancel",
+    "@cancel": {},
+    "delete": "Delete",
+    "@delete": {},
+    "deleteQuery": "Delete @?",
+    "@deleteQuery": {},
+
+    "screenTitleAddItem": "Add Item",
+    "@screenTitleAddItem": {},
+    "screenTitleEditItem": "Edit Item",
+    "@screenTitleEditItem": {},
+
+    "itemTitleLabel": "Item Title",
+    "@itemTitleLabel": {},
+    "itemTitleHint": "Enter a title",
+    "@itemTitleHint": {},
+    "itemDescLabel": "Item Description",
+    "@itemDescLabel": {},
+    "itemDescHint": "Enter a description",
+    "@itemDescHint": {},
+    "itemDeleteQuery": "Delete This Item?",
+    "@itemDeleteQuery": {},
+
+    "listEmpty": "No items added to this list yet.",
+    "@listEmpty": {},
+    "listErrNoObj": "ERROR - no list object associated with this key!",
+    "@listErrNoObj": {},
+
+    "createListSelectColor": "Select List Color",
+    "@createListSelectColor": {},
+    "createListAdd": "Add New List",
+    "@createListAdd": {},
+
+    "masterNoLists": "No lists yet!",
+    "@masterNoLists": {},
+    "masterErrObj": "Error - Missing or Mismatched Master List!",
+    "@masterErrObj": {},
+    "masterMissingListForId": "Missing object for ID.",
+    "@masterMissingListForId": {},
+
+    "snackbarItemAdded": "Item Added!",
+    "@snackbarItemAdded": {},
+    "snackbarItemAddFailed": "Item failed to add...",
+    "@snackbarItemAddFailed": {},
+    "snackbarItemUpdated": "Item Updated!",
+    "@snackbarItemUpdated": {},
+    "snackbarItemUpdateFailed": "Item failed to update...",
+    "@snackbarItemUpdateFailed": {}
+}

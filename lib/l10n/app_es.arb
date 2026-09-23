@@ -1,0 +1,61 @@
+{
+    "@@locale": "es",
+
+    "appTitle": "Will-Opus Listas",
+    "@appTitle": {},
+    "baseError": "ERROR",
+    "@baseError": {},
+    "standardError": "Error! Algo salió mal!",
+    "@standardError": {},
+
+    "ok": "OK",
+    "@ok": {},
+    "cancel": "Cancelar",
+    "@cancel": {},
+    "delete": "Eliminar",
+    "@delete": {},
+    "deleteQuery": "¿Eliminar @?",
+    "@deleteQuery": {},
+
+    "screenTitleAddItem": "Añadir Elemento",
+    "@screenTitleAddItem": {},
+    "screenTitleEditItem": "Editar Elemento",
+    "@screenTitleEditItem": {},
+
+    "itemTitleLabel": "Título del artículo",
+    "@itemTitleLabel": {},
+    "itemTitleHint": "Introduce un título",
+    "@itemTitleHint": {},
+    "itemDescLabel": "Descripción del artículo",
+    "@itemDescLabel": {},
+    "itemDescHint": "Introduce una descripción",
+    "@itemDescHint": {},
+    "itemDeleteQuery": "¿Eliminar este elemento?",
+    "@itemDeleteQuery": {},
+
+    "listEmpty": "Aún no se han añadido elementos a esta lista.",
+    "@listEmpty": {},
+    "listErrNoObj": "ERROR - No hay ningún objeto de lista asociado a este ID!",
+    "@listErrNoObj": {},
+
+    "createListSelectColor": "Seleccionar color de la lista",
+    "@createListSelectColor": {},
+    "createListAdd": "Añadir nueva lista",
+    "@createListAdd": {},
+
+    "masterNoLists": "¡Todavía no hay listas!",
+    "@masterNoLists": {},
+    "masterErrObj": "Error: ¡Falta la lista maestra o no coincide!",
+    "@masterErrObj": {},
+    "masterMissingListForId": "Falta el objeto para el ID.",
+    "@masterMissingListForId": {},
+
+    "snackbarItemAdded": "Artículo añadido!",
+    "@snackbarItemAdded": {},
+    "snackbarItemAddFailed": "No se pudo añadir el artículo...",
+    "@snackbarItemAddFailed": {},
+    "snackbarItemUpdated": "Elemento actualizado!",
+    "@snackbarItemUpdated": {},
+    "snackbarItemUpdateFailed": "No se pudo actualizar el elemento...",
+    "@snackbarItemUpdateFailed": {}
+}

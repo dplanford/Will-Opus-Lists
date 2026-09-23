@@ -4,6 +4,9 @@ import 'package:willopuslists/helper/storage_local_helper.dart';
 import 'package:willopuslists/screens/willopus_master_list_screen.dart';
 import 'package:willopuslists/constants.dart';
 
+// Auto-generated.
+import 'package:willopuslists/l10n/app_localizations.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -20,6 +23,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Will-Opus Lists',
+      onGenerateTitle: (context) {
+        return AppLocalizations.of(context)!.appTitle;
+      },
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: kMrowlSomewhatLiteGreen),
         useMaterial3: true,

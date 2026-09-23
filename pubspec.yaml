@@ -11,11 +11,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   flutter_colorpicker: ^1.1.0
   http: ^1.5.0
+  intl: 0.20.2  #current is ^0.20.3, not yet compatable with flutter_localizations.
   reorderables: ^0.6.0
   shared_preferences: ^2.5.3
   uuid: ^4.5.1
@@ -24,16 +27,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^6.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
 
   assets:
       - assets/images/
+      #- assets/languages/
 

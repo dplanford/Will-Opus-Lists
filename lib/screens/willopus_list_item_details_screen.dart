@@ -5,6 +5,9 @@ import 'package:willopuslists/helper/willopus_snackbar_helper.dart';
 import 'package:willopuslists/helper/willopus_list_helper.dart';
 import 'package:willopuslists/services/willopus_list_item_services.dart';
 
+// Auto-generated.
+import 'package:willopuslists/l10n/app_localizations.dart';
+
 /// Screen for displaying/adding a list item.
 class WillOpusListItemDetailsScreen extends StatefulWidget {
   final WillOpusListItem item;
@@ -33,7 +36,13 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
 
   @override
   Widget build(BuildContext context) {
-    String appbarTitle = widget.item.id == null || widget.item.id!.isEmpty ? 'Add Item' : 'Edit Item';
+    String appbarTitle = AppLocalizations.of(context)!.baseError;
+    if (widget.item.id == null || widget.item.id!.isEmpty) {
+      appbarTitle = AppLocalizations.of(context)!.screenTitleAddItem;
+    } else {
+      appbarTitle = AppLocalizations.of(context)!.screenTitleEditItem;
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       appBar: AppBar(
@@ -52,17 +61,17 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
                 if (addedId != null) {
                   WillOpusListHelper.itemsList.insert(0, widget.item);
                   WillOpusListHelper.updateSortIndexes();
-                  snackBarText = 'Item Added!';
+                  snackBarText = AppLocalizations.of(context)!.snackbarItemAdded;
                   doExit = true;
                 } else {
-                  snackBarText = 'Item failed to add...';
+                  snackBarText = AppLocalizations.of(context)!.snackbarItemAddFailed;
                 }
               } else {
                 if (await WillOpusListItemServices.patchItem(widget.item)) {
-                  snackBarText = 'Item Updated!';
+                  snackBarText = AppLocalizations.of(context)!.snackbarItemUpdated;
                   doExit = true;
                 } else {
-                  snackBarText = 'Item failed to update...';
+                  snackBarText = AppLocalizations.of(context)!.snackbarItemUpdateFailed;
                 }
               }
               _showSnackbar(snackBarText);
@@ -81,7 +90,7 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
         margin: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
         child: SingleChildScrollView(
           child: Column(children: [
-            const Text('Item Title'),
+            Text(AppLocalizations.of(context)!.itemTitleLabel),
             ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(15.0)),
               child: Container(
@@ -91,13 +100,13 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
                   onChanged: (value) {
                     widget.item.title = value;
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(15.0),
                       ),
                     ),
-                    hintText: 'Enter a title',
+                    hintText: AppLocalizations.of(context)!.itemTitleHint,
                   ),
                 ),
               ),
@@ -114,13 +123,13 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
                   onChanged: (value) {
                     widget.item.desc = value;
                   },
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(15.0),
                       ),
                     ),
-                    hintText: 'Enter a title',
+                    hintText: AppLocalizations.of(context)!.itemDescHint,
                   ),
                 ),
               ),

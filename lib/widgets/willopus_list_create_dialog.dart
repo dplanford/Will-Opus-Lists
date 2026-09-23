@@ -6,6 +6,9 @@ import 'package:willopuslists/widgets/adaptive_alert_dialog.dart';
 import 'package:willopuslists/widgets/color_picker_dialog.dart';
 import 'package:willopuslists/constants.dart';
 
+// Auto-generated
+import 'package:willopuslists/l10n/app_localizations.dart';
+
 /// A popup dialog for creating a new list of items.
 /// Returns a WillOpusList filled with a title and background color, plus and empty list of items.
 ///
@@ -49,21 +52,21 @@ class WillOpusListCreateDialog {
                       displayColor = WillOpusColorHelper.colorFromHex(listColorHex);
                     }
                   },
-                  child: Text('Select List Color'),
+                  child: Text(AppLocalizations.of(context)!.createListSelectColor),
                 ),
               ],
             ),
           ),
           actions: [
             TextButton(
-              child: const Text('Cancel'),
+              child: Text(AppLocalizations.of(context)!.cancel),
               onPressed: () {
                 cancelled = true;
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: const Text('Add New List'),
+              child: Text(AppLocalizations.of(context)!.createListAdd),
               onPressed: () {
                 Navigator.of(context).pop();
               },

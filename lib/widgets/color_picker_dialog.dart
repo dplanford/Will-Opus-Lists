@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
+// Auto-generated
+import 'package:willopuslists/l10n/app_localizations.dart';
+
 /// A Color picker dialog, showing a color wheel, as well as a text field for entering a HEX string color.
 /// Returns: the selected color's HEX string value.
 ///
@@ -61,7 +64,7 @@ class ColorPickerDialog {
           ),
           actions: [
             TextButton(
-              child: const Text('Cancel'),
+              child: Text(AppLocalizations.of(context)!.cancel),
               onPressed: () {
                 cancelled = true;
                 Navigator.of(context).pop();
@@ -71,7 +74,7 @@ class ColorPickerDialog {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('OK'),
+              child: Text(AppLocalizations.of(context)!.ok),
             )
           ],
         );

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:willopuslists/helper/willopus_master_list_helper.dart';
 
 import 'package:willopuslists/model/willopus_list.dart';
 import 'package:willopuslists/model/willopus_master_list.dart';
+import 'package:willopuslists/helper/willopus_master_list_helper.dart';
 import 'package:willopuslists/services/willopus_list_services.dart';
 import 'package:willopuslists/services/willopus_master_services.dart';
 import 'package:willopuslists/widgets/adaptive_circular_indicator.dart';
 import 'package:willopuslists/widgets/willopus_list_create_dialog.dart';
 import 'package:willopuslists/widgets/willopus_list_tile.dart';
+
+// Auto-generated
+import 'package:willopuslists/l10n/app_localizations.dart';
 
 /// A screen for displaying the user's master/main list screen... the screen showing all the user's
 /// color-coded lists.
@@ -35,7 +38,7 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Center(child: Text('Will-Opus Lists')),
+        title: Center(child: Text(AppLocalizations.of(context)!.appTitle)),
         actions: [
           if (!isLoading)
             IconButton(
@@ -69,11 +72,11 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
     }
 
     if (masterList == null) {
-      return Center(child: Text('Error - Missing or Mismatched Master List!'));
+      return Center(child: Text(AppLocalizations.of(context)!.masterErrObj));
     }
 
     if (lists.length <= 0) {
-      return Center(child: Text('No lists yet!'));
+      return Center(child: Text(AppLocalizations.of(context)!.masterNoLists));
     }
 
     return ListView.separated(
@@ -94,7 +97,10 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
         } else {
           // Add a dummy object in case of load object error, so the displayed objects
           // and the master list of object keys match.
-          lists.add(WillOpusList(title: 'ERROR', desc: 'Missing object for key.'));
+          lists.add(WillOpusList(
+            title: AppLocalizations.of(context)!.baseError,
+            desc: AppLocalizations.of(context)!.masterMissingListForId,
+          ));
         }
       });
     }
