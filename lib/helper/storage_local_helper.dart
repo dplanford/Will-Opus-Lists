@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Handle Local Storage of app data.
-class WillOpusSharedPrefs {
+class StorageLocalHelper {
   static late SharedPreferences shared;
 
   static Future<void> init() async {

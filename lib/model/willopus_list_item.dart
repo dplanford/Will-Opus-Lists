@@ -23,7 +23,7 @@ class WillOpusListItem {
     title = json[_kTitle] ?? '';
     desc = json[_kDesc] ?? '';
     isCompleted = json[_kCompleted] ?? false;
-    //image = null; //TODO: WillOpusImage().fromJson(json['image']) ?? null;
+    //image = null; //WillOpusImage().fromJson(json['image']) ?? null;
   }
 
   Map<String, dynamic> toJson() {

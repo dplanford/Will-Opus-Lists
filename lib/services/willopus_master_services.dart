@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:uuid/uuid.dart';
-import 'package:willopuslists/helper/firebase_storage_helper.dart';
+import 'package:willopuslists/helper/storage_firebase_helper.dart';
 
 import 'package:willopuslists/model/willopus_master_list.dart';
-import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
+import 'package:willopuslists/helper/storage_local_helper.dart';
 import 'package:willopuslists/constants.dart';
 
 /// Master List storage services.
@@ -13,13 +13,13 @@ import 'package:willopuslists/constants.dart';
 class WillOpusMasterServices {
   /// get the master key, the id of the stored master list object.
   static Future<String?> getMasterKey() async {
-    return await WillOpusSharedPrefs.shared.getString(kMasterIDKey);
+    return await StorageLocalHelper.shared.getString(kMasterIDKey);
   }
 
   /// set the stored local key to the master list object.
   /// Returns bool in case future setup requires returning an error.
   static Future<bool> setMasterKey(String key) async {
-    await WillOpusSharedPrefs.shared.setString(kMasterIDKey, key);
+    await StorageLocalHelper.shared.setString(kMasterIDKey, key);
     return true;
   }
 
@@ -29,11 +29,14 @@ class WillOpusMasterServices {
     bool onCloud = false,
   }) async {
     if (onCloud) {
-      // TODO: setup Firebase service
+      var map = await StorageFirebaseHelper.getMapFromJsonKey(key);
+      if (map != null) {
+        return WillOpusMasterList.fromJson(map);
+      }
       return null;
     }
 
-    var map = await WillOpusSharedPrefs.getMapFromJsonKey(key);
+    var map = await StorageLocalHelper.getMapFromJsonKey(key);
     if (map != null) {
       return WillOpusMasterList.fromJson(map);
     }
@@ -51,13 +54,13 @@ class WillOpusMasterServices {
     bool onCloud = false,
   }) async {
     if (onCloud) {
-      String? newId = await FirebaseStorageHelper.addObject(masterList.toJson());
+      String? newId = await StorageFirebaseHelper.addObject(masterList.toJson());
       masterList.id = newId;
       return newId;
     }
 
     masterList.id = const Uuid().v1();
-    await WillOpusSharedPrefs.shared.setString(masterList.id!, json.encode(masterList.toJson()));
+    await StorageLocalHelper.shared.setString(masterList.id!, json.encode(masterList.toJson()));
     return masterList.id;
   }
 
@@ -67,11 +70,11 @@ class WillOpusMasterServices {
     bool onCloud = false,
   }) async {
     if (onCloud) {
-      return (await FirebaseStorageHelper.patchObject(masterList.id!, masterList.toJson()));
+      return (await StorageFirebaseHelper.patchObject(masterList.id!, masterList.toJson()));
     }
 
     if (masterList.id != null) {
-      await WillOpusSharedPrefs.shared.setString(masterList.id!, json.encode(masterList.toJson()));
+      await StorageLocalHelper.shared.setString(masterList.id!, json.encode(masterList.toJson()));
       return true;
     }
     return false;
@@ -87,11 +90,11 @@ class WillOpusMasterServices {
     if (masterList.id == null) return false;
 
     if (onCloud) {
-      return (FirebaseStorageHelper.deleteObject(masterList.id!));
+      return (StorageFirebaseHelper.deleteObject(masterList.id!));
     }
 
     if (masterList.id != null) {
-      await WillOpusSharedPrefs.shared.remove(masterList.id!);
+      await StorageLocalHelper.shared.remove(masterList.id!);
       return true;
     }
     return false;

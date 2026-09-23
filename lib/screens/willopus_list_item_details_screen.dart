@@ -121,7 +121,7 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
                 ),
               ),
             ),
-            // TODO: rwork to do direct rather than cached images, since we will be storing or clouding them in base64 string encoding
+            // TODO: rework to do direct rather than cached images, since we will be storing or clouding them in base64 string encoding?
             //if (widget.item.image != null) const SizedBox(height: 24),
             //if (widget.item.image != null) CachedNetworkImage(imageUrl: widget.item.image.),
           ]),

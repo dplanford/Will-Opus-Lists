@@ -67,7 +67,7 @@ Updated README.md (once I figure out the Markdown formatting ;-)
 
 assets/
     - any assets (icons, images, sound files, etc.) that are local to the app's data.
-    - depending on the app setup, this directory might move (see the pubspec.yaml file for the app's specific direction)
+    - depending on the app setup, this directory might move (see the pubspec.yaml file for the app's specific location)
 
 model/
     - core data objects used by this app. While some may be purely for local app use, many are defined to be JSON encoded/decoded for storage & recovery.
@@ -99,7 +99,7 @@ root:
     - constants.dart
         - globally constant values, such as Firebase server URL hooks, and default app color values.
     - pubspec.yaml
-        - the core Flutter build setup, defining included external packages, assets & testing hooks, etc.
+        - the core Flutter build setup, defining included external packages, assets directories, and testing hooks.
 
 =============================
 

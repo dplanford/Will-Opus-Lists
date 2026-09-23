@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
-import 'package:willopuslists/helper/firebase_storage_helper.dart';
-import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
+import 'package:willopuslists/helper/storage_firebase_helper.dart';
+import 'package:willopuslists/helper/storage_local_helper.dart';
 
 /// List Item object storage services.
 /// Inputting the "onCloud = true" input on any service call that includes it sends the
@@ -16,11 +16,14 @@ class WillOpusListItemServices {
     bool onCloud = false,
   }) async {
     if (onCloud) {
-      // TODO: Missed this Firebase call!
+      var map = await StorageFirebaseHelper.getMapFromJsonKey(key);
+      if (map != null) {
+        return WillOpusListItem.fromJson(map);
+      }
       return null;
     }
 
-    var map = await WillOpusSharedPrefs.getMapFromJsonKey(key);
+    var map = await StorageLocalHelper.getMapFromJsonKey(key);
     if (map != null) {
       return WillOpusListItem.fromJson(map);
     }
@@ -38,14 +41,13 @@ class WillOpusListItemServices {
     bool onCloud = false,
   }) async {
     if (onCloud) {
-      // TODO: setup Firebase service
-      String? newId = await FirebaseStorageHelper.addObject(item.toJson());
+      String? newId = await StorageFirebaseHelper.addObject(item.toJson());
       item.id = newId;
       return newId;
     }
 
     item.id = const Uuid().v1();
-    await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
+    await StorageLocalHelper.shared.setString(item.id!, json.encode(item.toJson()));
     return item.id;
   }
 
@@ -57,11 +59,11 @@ class WillOpusListItemServices {
     if (item.id == null) return false;
 
     if (onCloud) {
-      return (await FirebaseStorageHelper.patchObject(item.id!, item.toJson()));
+      return (await StorageFirebaseHelper.patchObject(item.id!, item.toJson()));
     }
 
     if (item.id != null) {
-      await WillOpusSharedPrefs.shared.setString(item.id!, json.encode(item.toJson()));
+      await StorageLocalHelper.shared.setString(item.id!, json.encode(item.toJson()));
       return true;
     }
     return false;
@@ -75,11 +77,11 @@ class WillOpusListItemServices {
     if (item.id == null) return false;
 
     if (onCloud) {
-      return (FirebaseStorageHelper.deleteObject(item.id!));
+      return (StorageFirebaseHelper.deleteObject(item.id!));
     }
 
     if (item.id != null) {
-      await WillOpusSharedPrefs.shared.remove(item.id!);
+      await StorageLocalHelper.shared.remove(item.id!);
       return true;
     }
     return false;

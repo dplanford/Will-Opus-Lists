@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:willopuslists/helper/willopus_shared_preferences_helper.dart';
+import 'package:willopuslists/helper/storage_local_helper.dart';
 import 'package:willopuslists/screens/willopus_master_list_screen.dart';
 import 'package:willopuslists/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await WillOpusSharedPrefs.init();
+  await StorageLocalHelper.init();
 
   runApp(const MyApp());
 }

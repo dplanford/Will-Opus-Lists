@@ -24,7 +24,27 @@ import 'package:willopuslists/constants.dart';
 /// old tutorials). Proper future setup to handle user authentication on each HTTP request & error
 /// handling might be better handled by a Flutter tool like Dio.
 ///
-class FirebaseStorageHelper {
+class StorageFirebaseHelper {
+  /// Get a Firebase stored JSON object from it's key.
+  static Future<String?> getObjectJson(String key) async {
+    // TODO: Add get JSON string from Firebase!
+    // Need to lookup HTTP setup with Firebase.
+    return null;
+  }
+
+  /// Load an generic object from it's key...
+  /// check if the return can be JSON decoded into a Flutter Map<String, dynamic>.
+  /// return the Map, or null on any failure.
+  static Future<Map<String, dynamic>?> getMapFromJsonKey(String key) async {
+    String? data = await getObjectJson(key);
+    if (data == null) return null;
+    var item = json.decode(data);
+    if (item is Map<String, dynamic>) {
+      return item;
+    }
+    return null;
+  }
+
   /// Add a Firebase JSON object, returning the Firebase generated access key.
   static Future<String?> addObject(Map<String, dynamic> data) async {
     var uri = Uri.https(
