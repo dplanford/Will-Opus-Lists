@@ -39,3 +39,6 @@ ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme
 /ios
 /android
 devtools_options.yaml
+lib/l10n/app_localizations.dart
+lib/l10n/app_localizations_en.dart
+lib/l10n/app_localizations_es.dart

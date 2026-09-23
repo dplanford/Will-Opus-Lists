@@ -69,5 +69,7 @@
     "snackbarListDeleted": "Se ha eliminado la lista \"@\".",
     "@snackbarListDeleted": {},
     "snackbarListDeleteErr": "No se pudo eliminar la lista \"@\".",
-    "@snackbarListDeleteErr": {}
+    "@snackbarListDeleteErr": {},
+    "snackbarListNoId": "ERROR - ¡La lista no tiene ID!",
+    "@snackbarListNoId": {}
 }

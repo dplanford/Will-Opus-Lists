@@ -13,10 +13,10 @@ import 'package:willopuslists/l10n/app_localizations.dart';
 
 /// Screen for displaying/updating a list of task items.
 class WillOpusListScreen extends StatefulWidget {
-  final String listId = '';
+  final String listId;
 
   const WillOpusListScreen(
-    String listId, {
+    this.listId, {
     super.key,
   });
 

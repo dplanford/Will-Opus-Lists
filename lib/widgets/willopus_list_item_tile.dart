@@ -119,7 +119,7 @@ class _WillOpusListItemTileState extends State<WillOpusListItemTile> {
     bool doDelete = false;
 
     String deleteQuery = AppLocalizations.of(context)!.deleteQuery;
-    deleteQuery.replaceFirst('@', widget.item.title);
+    deleteQuery = deleteQuery.replaceFirst('@', widget.item.title);
 
     await showDialog(
       context: context,

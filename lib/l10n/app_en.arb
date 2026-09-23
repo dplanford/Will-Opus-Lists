@@ -69,5 +69,7 @@
     "snackbarListDeleted": "List \"@\" Removed",
     "@snackbarListDeleted": {},
     "snackbarListDeleteErr": "List \"@\" failed to remove.",
-    "@snackbarListDeleteErr": {}
+    "@snackbarListDeleteErr": {},
+    "snackbarListNoId": "ERROR - List has no id!",
+    "@snackbarListNoId": {}
 }

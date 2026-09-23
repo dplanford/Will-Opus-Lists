@@ -283,6 +283,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'List \"@\" failed to remove.'**
   String get snackbarListDeleteErr;
+
+  /// No description provided for @snackbarListNoId.
+  ///
+  /// In en, this message translates to:
+  /// **'ERROR - List has no id!'**
+  String get snackbarListNoId;
 }
 
 class _AppLocalizationsDelegate

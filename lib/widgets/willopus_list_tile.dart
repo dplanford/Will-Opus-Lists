@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:willopuslists/helper/willopus_color_helper.dart';
 
 import 'package:willopuslists/model/willopus_list.dart';
+import 'package:willopuslists/helper/snackbar_helper.dart';
+import 'package:willopuslists/helper/willopus_color_helper.dart';
+import 'package:willopuslists/screens/willopus_list_screen.dart';
+
+// Auto-generated
+import 'package:willopuslists/l10n/app_localizations.dart';
 
 class WillOpusListTile extends StatefulWidget {
   final WillOpusList list;
@@ -46,8 +51,15 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
       //  - MUST TEST overlay buttons on this tile! (edit/delete)....
       child: TextButton(
         onPressed: () {
-          // TODO: Go to this individual list's screen....
-          // TODO: Grey out (empty onPressed) if list's id is null (dummy object for load error)
+          if (widget.list.id == null || widget.list.id!.isEmpty) {
+            SnackbarHelper.showSnackBar(context, AppLocalizations.of(context)!.snackbarListNoId);
+            return;
+          }
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => WillOpusListScreen(widget.list.id!),
+            ),
+          );
         },
         child: Container(
           color: Colors.white,
@@ -63,7 +75,7 @@ class _WillOpusListTileState extends State<WillOpusListTile> {
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      widget.list.title,
+                      '${widget.list.title} - ${widget.list.itemIds.length} items',
                       //style: TextStyle(fontSize: 20.0, color: widget.list.isCompleted ? Colors.white : Colors.black),
                       softWrap: true,
                     ),

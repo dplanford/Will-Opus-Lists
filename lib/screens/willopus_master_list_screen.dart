@@ -105,12 +105,12 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
             bool patched = await WillOpusListServices.patchList(editedList);
             if (patched) {
               String toast = AppLocalizations.of(context)!.snackbarListUpdated;
-              toast.replaceFirst('@', list.title);
+              toast = toast.replaceFirst('@', list.title);
               SnackbarHelper.showSnackBar(context, toast);
               setState(() {});
             } else {
               String toast = AppLocalizations.of(context)!.snackbarListUpdateErr;
-              toast.replaceFirst('@', list.title);
+              toast = toast.replaceFirst('@', list.title);
               SnackbarHelper.showSnackBar(context, toast);
             }
           }
@@ -125,7 +125,7 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
             bool patched = await WillOpusMasterServices.patchMasterList(masterList!);
             if (patched) {
               String toast = AppLocalizations.of(context)!.snackbarListDeleted;
-              toast.replaceFirst('@', list.title);
+              toast = toast.replaceFirst('@', list.title);
               SnackbarHelper.showSnackBar(context, toast);
               setState(() {
                 // Remove the list's display tile.
@@ -133,7 +133,7 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
               });
             } else {
               String toast = AppLocalizations.of(context)!.snackbarListDeleteErr;
-              toast.replaceFirst('@', list.title);
+              toast = toast.replaceFirst('@', list.title);
               SnackbarHelper.showSnackBar(context, toast);
             }
           }

@@ -100,4 +100,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get snackbarListDeleteErr => 'List \"@\" failed to remove.';
+
+  @override
+  String get snackbarListNoId => 'ERROR - List has no id!';
 }
