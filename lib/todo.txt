@@ -93,18 +93,28 @@ reorderables
 
 =============================
 
-Next app steps....
+Next Try TODO:
 
-1) Get list screen working again
-    - display with reordable tiles
-    - redo the reorderable setup
-    - test/fix all list/item services
+0?) Add the little expected three-bar icon to each re-ordable tile to indicate it can be 
+dragged & dropped to re-order!
+    - list item tile widget
+    - master list item widget
 
-2) Setup reordable master list
+1) Get the list screen working
+    - using reorderable tiles, but, first pass, ignoring reordering... just using them as the core widget for display!
+    - clicking on a list tile goes to the details screen
+    - saving a tile from details (add/patch)
+1a) Make sure the details screen also works!
 
-3) Small thing... fix the color dialog leaving the keyboard out focus bug.
+2) get re-ordering of list tiles working again...
 
-4) Maybe get to images....
+3) Small-ish thins: Migrate the basics of re-ordering to the master screen & its different tiles
+    - so the user can see with an expected icon that they can re-order their lists.
+
+4) Small thing... fix the color dialog leaving the keyboard out of focus bug.
+    - Also, perhaps make the color picker simpiler & easier to understand?
+
+5) Maybe get to images....
     First Pass (local storage only):
         - just store local link to the image in the user's local phone
         - also could pick an image URL from a browser window?
