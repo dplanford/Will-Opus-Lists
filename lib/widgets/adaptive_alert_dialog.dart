@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 /// A super quicky wrapper around the Flutter AlertDialog for iOS/Android UIs.
+///
 class AdaptiveAlertDialog extends StatelessWidget {
   final Widget? title;
   final Widget? content;
   final List<Widget> actions;
 
   const AdaptiveAlertDialog({
-    Key? key,
+    super.key,
     this.title,
     this.content,
     this.actions = const [],
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

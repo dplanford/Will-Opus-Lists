@@ -7,6 +7,9 @@ import 'package:willopuslists/constants.dart';
 // Auto-generated.
 import 'package:willopuslists/l10n/app_localizations.dart';
 
+/// The main root Flutter start of this app.
+/// This initializes basic important startup stuff, and then launches the master screen.
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

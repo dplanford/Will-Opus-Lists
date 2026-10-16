@@ -2,6 +2,8 @@
 import 'package:willopuslists/model/willopus_master_list.dart';
 import 'package:willopuslists/services/willopus_master_services.dart';
 
+/// Helper functions for handling user master objects & lists.
+///
 class WillOpusMasterListHelper {
   /// Get the user's singular master list object.
   /// If no master object key is yet stored, then create a new empty master list.

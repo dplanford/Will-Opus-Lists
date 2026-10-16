@@ -7,10 +7,11 @@ import 'package:willopuslists/constants.dart';
 /// Master List storage services.
 /// Inputting the "onCloud = true" input on any service call that includes it sends the
 /// object data call to the Firebase cloud service, rather than local storage services.
+///
 class WillOpusMasterServices {
   /// get the master key, the id of the stored master list object.
   static Future<String?> getMasterKey() async {
-    return await StorageLocalHelper.shared.getString(kMasterIDKey);
+    return StorageLocalHelper.shared.getString(kMasterIDKey);
   }
 
   /// set the stored local key to the master list object.
@@ -43,8 +44,8 @@ class WillOpusMasterServices {
   /// Add a new master list object, using initial values.
   /// Returns the key ID to the new object, null on error.
   //
-  // Adding a new master list assumes a null id, which is set by the add process.
-  //  - in local storage, this assigns a uuid
+  // Adding a new master list object assumes a null id, which is set by the add process.
+  //  - in local storage, this assigns a uuid as the returned id
   //  - in online cloud storage (Firebase), this uses the id returned by the Firebase server.
   static Future<String?> addMasterList(
     WillOpusMasterList masterList, {
@@ -60,7 +61,7 @@ class WillOpusMasterServices {
     return masterList.id;
   }
 
-  /// Update a master list object, using it's key/id.
+  /// Update a master list object in storage.
   static Future<bool> patchMasterList(
     WillOpusMasterList masterList, {
     bool onCloud = false,
@@ -75,9 +76,11 @@ class WillOpusMasterServices {
     return false;
   }
 
-  /// Delete a master list object, using it's key/id.
-  /// This should never be done in-app unless some emergency reset....
-  /// Set up the capability to match other similar object services.
+  /// Delete THE master list object, using it's key/id.
+  /// NOTE!
+  /// This should never be done in-app unless some emergency reset! Deleting this singleton
+  /// user object deletes the master key to access all other data objects for this user!
+  ///
   static Future<bool> deleteMasterList(
     WillOpusMasterList masterList, {
     bool onCloud = false,

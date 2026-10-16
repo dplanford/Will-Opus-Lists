@@ -1,12 +1,13 @@
 import 'package:willopuslists/constants.dart';
 
 /// A list of items, with a title & color.
+///
 class WillOpusList {
-  static String _kID = 'id';
-  static String _kTitle = 'title';
-  static String _kDesc = 'desc';
-  static String _kHexColor = 'hex_color';
-  static String _kItemIds = 'item_ids';
+  final String _kID = 'id';
+  final String _kTitle = 'title';
+  final String _kDesc = 'desc';
+  final String _kHexColor = 'hex_color';
+  final String _kItemIds = 'item_ids';
 
   String? id;
   String title = '';

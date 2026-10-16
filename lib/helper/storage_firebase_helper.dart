@@ -1,3 +1,5 @@
+// ignore_for_file: unintended_html_in_doc_comment
+
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -72,7 +74,7 @@ class StorageFirebaseHelper {
   static Future<bool> patchObject(String key, Map<String, dynamic> data) async {
     var uri = Uri.https(
       kFirebaseUrl,
-      '$kTestFile/${key}.json',
+      '$kTestFile/$key.json',
     );
 
     try {
@@ -94,7 +96,7 @@ class StorageFirebaseHelper {
   static Future<bool> deleteObject(String key) async {
     var uri = Uri.https(
       kFirebaseUrl,
-      '$kTestFile/${key}.json',
+      '$kTestFile/$key.json',
     );
 
     try {

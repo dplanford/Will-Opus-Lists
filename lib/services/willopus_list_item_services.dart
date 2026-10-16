@@ -5,6 +5,7 @@ import 'package:willopuslists/helper/storage_local_helper.dart';
 /// List Item object storage services.
 /// Inputting the "onCloud = true" input on any service call that includes it sends the
 /// object data call to the Firebase cloud service, rather than local storage services.
+///
 class WillOpusListItemServices {
   /// grab a list item from it's id.
   static Future<WillOpusListItem?> getItem(
@@ -26,11 +27,11 @@ class WillOpusListItemServices {
     return null;
   }
 
-  /// Add a list item object, using it's initial values.
+  /// Add a new list item object, using it's initial values.
   /// Returns the key ID to the new object, null on error.
   //
-  // Adding a new list item assumes a null id, which is set by the add process.
-  //  - in local storage, this assigns a uuid
+  // Adding a new list item assumes a null object id, which is set by the add process.
+  //  - in local storage, this assigns a uuid as the returned id
   //  - in online cloud storage (Firebase), this uses the id returned by the Firebase server.
   static Future<String?> addItem(
     WillOpusListItem item, {
@@ -45,7 +46,7 @@ class WillOpusListItemServices {
     return item.id;
   }
 
-  /// Update a list item object, using it's key/id and updated data.
+  /// Update an existing list item object in storage.
   static Future<bool> patchItem(
     WillOpusListItem item, {
     bool onCloud = false,
@@ -63,7 +64,7 @@ class WillOpusListItemServices {
     return false;
   }
 
-  /// Delete a list item object, using it's key/id.
+  /// Delete a list item object from storage, using it's key/id.
   static Future<bool> deleteItem(
     WillOpusListItem item, {
     bool onCloud = false,

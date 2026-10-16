@@ -8,6 +8,9 @@ import 'package:willopuslists/screens/willopus_list_screen.dart';
 // Auto-generated
 import 'package:willopuslists/l10n/app_localizations.dart';
 
+/// A display tile for a list that can be clicked on to go to its detailed list.
+/// This tile is displayed on the master screen, as a list tile for each list the user has.
+///
 class WillOpusListTile extends StatefulWidget {
   final WillOpusList list;
   final void Function(WillOpusList)? updateList;

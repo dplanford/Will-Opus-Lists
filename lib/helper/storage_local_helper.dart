@@ -1,3 +1,5 @@
+// ignore_for_file: unintended_html_in_doc_comment
+
 import 'dart:convert';
 
 import 'package:uuid/uuid.dart';
@@ -5,6 +7,8 @@ import 'package:uuid/uuid.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Handle Local Storage of app data.
+/// This matches the standard of the Firebase add/patch/delete server functions, since they both use
+/// JSON object with key/id storage.
 ///
 // TODO: Any error handling on storage await errors?
 ///
@@ -38,7 +42,7 @@ class StorageLocalHelper {
   /// check if the return can be JSON decoded into a Flutter Map<String, dynamic>.
   /// return the map, or null on any failure.
   static Future<Map<String, dynamic>?> getMapFromJson(String id) async {
-    String? data = await shared.getString(id);
+    String? data = shared.getString(id);
     if (data == null) return null;
     var item = json.decode(data);
     if (item is Map<String, dynamic>) {

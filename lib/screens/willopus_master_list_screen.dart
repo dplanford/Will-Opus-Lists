@@ -14,8 +14,9 @@ import 'package:willopuslists/widgets/willopus_list_tile.dart';
 // Auto-generated
 import 'package:willopuslists/l10n/app_localizations.dart';
 
-/// A screen for displaying the user's master/main list screen... the screen showing all the user's
-/// color-coded lists.
+/// A screen for displaying the user's master/main list screen...
+/// the screen showing all the user's color-coded lists.
+///
 class WillOpusMasterListScreen extends StatefulWidget {
   const WillOpusMasterListScreen({super.key});
 

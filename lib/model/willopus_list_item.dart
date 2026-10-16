@@ -1,9 +1,10 @@
 /// An individual item in a list.
+///
 class WillOpusListItem {
-  static String _kID = 'id';
-  static String _kTitle = 'title';
-  static String _kDesc = 'desc';
-  static String _kCompleted = 'done';
+  final String _kID = 'id';
+  final String _kTitle = 'title';
+  final String _kDesc = 'desc';
+  final String _kCompleted = 'done';
 
   String? id;
   String title = '';

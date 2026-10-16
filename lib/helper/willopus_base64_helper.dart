@@ -11,6 +11,7 @@ import 'package:flutter/widgets.dart';
 /// With later image usage:
 ///   - for local only, a simple link to the local image should work for most needs. No Base64 encoding needed.
 ///   - once I need to online server-side transmit/store/load the image, these base64 funcs will be useful?
+///
 class WillOpusEncodingHelper {
   static Image imageFromUint8List(Uint8List data) {
     return Image.memory(data);

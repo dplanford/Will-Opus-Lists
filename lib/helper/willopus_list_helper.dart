@@ -8,6 +8,10 @@ import 'package:willopuslists/services/willopus_list_item_services.dart';
 //import 'package:willopuslists/services/willopus_list_services.dart';
 //import 'package:willopuslists/widgets/willopus_list_item_tile.dart';
 
+/// Helper functions for lists.
+///
+/// TODO: Fix all this!!!
+///
 class WillOpusListHelper {
   /// Return a matching list of loaded items from a list of IDs for the stored item objects.
   // TODO: Update/move?, to handle displaying each item as it gets async loaded?

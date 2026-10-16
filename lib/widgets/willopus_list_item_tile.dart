@@ -8,8 +8,9 @@ import 'package:willopuslists/screens/willopus_list_item_details_screen.dart';
 // Auto-generated
 import 'package:willopuslists/l10n/app_localizations.dart';
 
-/// Display a WillOpusListItem as a list tile.
+/// Display a WillOpusListItem as a display list tile.
 /// Includes a refresh parent function call if this item is updated.
+///
 class WillOpusListItemTile extends StatefulWidget {
   final WillOpusListItem item;
   final void Function()? refreshParent;

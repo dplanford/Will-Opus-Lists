@@ -9,6 +9,7 @@ import 'package:willopuslists/services/willopus_list_item_services.dart';
 import 'package:willopuslists/l10n/app_localizations.dart';
 
 /// Screen for displaying/adding a list item.
+///
 class WillOpusListItemDetailsScreen extends StatefulWidget {
   final WillOpusListItem item;
   final void Function()? refreshParent;

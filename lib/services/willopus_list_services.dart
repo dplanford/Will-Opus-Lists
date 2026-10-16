@@ -5,6 +5,7 @@ import 'package:willopuslists/helper/storage_local_helper.dart';
 /// List object storage services.
 /// Inputting the "onCloud = true" input on any service call that includes it sends the
 /// object data call to the Firebase cloud service, rather than local storage services.
+///
 class WillOpusListServices {
   /// Grab a list object from it's id.
   static Future<WillOpusList?> getList(
@@ -29,8 +30,8 @@ class WillOpusListServices {
   /// Add a list object, using it's initial values.
   /// Returns the key ID to the new object, null on error.
   //
-  // Adding a new list assumes a null id, which is set by the add process.
-  //  - in local storage, this assigns a uuid
+  // Adding a new list object assumes a null id, which is set by the add process.
+  //  - in local storage, this assigns a uuid as the returned id
   //  - in online cloud storage (Firebase), this uses the id returned by the Firebase server.
   static Future<String?> addList(
     WillOpusList list, {
@@ -46,7 +47,7 @@ class WillOpusListServices {
     return list.id;
   }
 
-  /// Update a list object, using it's key/id.
+  /// Update a list object in storage.
   static Future<bool> patchList(
     WillOpusList list, {
     bool onCloud = false,

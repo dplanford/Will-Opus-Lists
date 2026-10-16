@@ -12,6 +12,7 @@ import 'package:willopuslists/widgets/adaptive_circular_indicator.dart';
 import 'package:willopuslists/l10n/app_localizations.dart';
 
 /// Screen for displaying/updating a list of task items.
+///
 class WillOpusListScreen extends StatefulWidget {
   final String listId;
 
