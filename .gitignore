@@ -42,3 +42,11 @@ devtools_options.yaml
 lib/l10n/app_localizations.dart
 lib/l10n/app_localizations_en.dart
 lib/l10n/app_localizations_es.dart
+/.idea
+.metadata
+analysis_options.yaml
+/linux
+/macos
+/web
+willopuslists.iml
+/windows
