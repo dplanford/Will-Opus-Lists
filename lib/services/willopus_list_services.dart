@@ -46,8 +46,7 @@ class WillOpusListServices {
       return newId;
     }
 
-    list.id = const Uuid().v1();
-    await StorageLocalHelper.shared.setString(list.id!, json.encode(list.toJson()));
+    list.id = await StorageLocalHelper.addObject(list.toJson());
     return list.id;
   }
 
@@ -63,9 +62,9 @@ class WillOpusListServices {
     }
 
     if (list.id != null) {
-      await StorageLocalHelper.shared.setString(list.id!, json.encode(list.toJson()));
-      return true;
+      return await StorageLocalHelper.patchObject(list.id!, list.toJson());
     }
+
     return false;
   }
 
@@ -81,9 +80,9 @@ class WillOpusListServices {
     }
 
     if (list.id != null) {
-      await StorageLocalHelper.shared.remove(list.id!);
-      return true;
+      return await StorageLocalHelper.deleteObject(list.id!);
     }
+
     return false;
   }
 }

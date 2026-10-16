@@ -68,7 +68,7 @@ class StorageFirebaseHelper {
     }
   }
 
-  /// Path/Update an existing Firebase JSON object, from it's Firebase key and new data.
+  /// Patch/Update an existing Firebase JSON object, from it's Firebase key and new data.
   static Future<bool> patchObject(String key, Map<String, dynamic> data) async {
     var uri = Uri.https(
       kFirebaseUrl,

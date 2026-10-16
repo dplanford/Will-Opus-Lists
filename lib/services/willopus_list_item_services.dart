@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:uuid/uuid.dart';
-
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/helper/storage_firebase_helper.dart';
 import 'package:willopuslists/helper/storage_local_helper.dart';
@@ -41,13 +37,11 @@ class WillOpusListItemServices {
     bool onCloud = false,
   }) async {
     if (onCloud) {
-      String? newId = await StorageFirebaseHelper.addObject(item.toJson());
-      item.id = newId;
-      return newId;
+      item.id = await StorageFirebaseHelper.addObject(item.toJson());
+      return item.id;
     }
 
-    item.id = const Uuid().v1();
-    await StorageLocalHelper.shared.setString(item.id!, json.encode(item.toJson()));
+    item.id = await StorageFirebaseHelper.addObject(item.toJson());
     return item.id;
   }
 
@@ -59,13 +53,13 @@ class WillOpusListItemServices {
     if (item.id == null) return false;
 
     if (onCloud) {
-      return (await StorageFirebaseHelper.patchObject(item.id!, item.toJson()));
+      return await StorageFirebaseHelper.patchObject(item.id!, item.toJson());
     }
 
     if (item.id != null) {
-      await StorageLocalHelper.shared.setString(item.id!, json.encode(item.toJson()));
-      return true;
+      return await StorageLocalHelper.patchObject(item.id!, item.toJson());
     }
+
     return false;
   }
 
@@ -77,12 +71,11 @@ class WillOpusListItemServices {
     if (item.id == null) return false;
 
     if (onCloud) {
-      return (StorageFirebaseHelper.deleteObject(item.id!));
+      return await StorageFirebaseHelper.deleteObject(item.id!);
     }
 
     if (item.id != null) {
-      await StorageLocalHelper.shared.remove(item.id!);
-      return true;
+      return await StorageLocalHelper.deleteObject(item.id!);
     }
     return false;
   }

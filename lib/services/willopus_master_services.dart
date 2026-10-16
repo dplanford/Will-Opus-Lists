@@ -59,8 +59,7 @@ class WillOpusMasterServices {
       return newId;
     }
 
-    masterList.id = const Uuid().v1();
-    await StorageLocalHelper.shared.setString(masterList.id!, json.encode(masterList.toJson()));
+    masterList.id = await StorageLocalHelper.addObject(masterList.toJson());
     return masterList.id;
   }
 
@@ -70,12 +69,11 @@ class WillOpusMasterServices {
     bool onCloud = false,
   }) async {
     if (onCloud) {
-      return (await StorageFirebaseHelper.patchObject(masterList.id!, masterList.toJson()));
+      return await StorageFirebaseHelper.patchObject(masterList.id!, masterList.toJson());
     }
 
     if (masterList.id != null) {
-      await StorageLocalHelper.shared.setString(masterList.id!, json.encode(masterList.toJson()));
-      return true;
+      return StorageLocalHelper.patchObject(masterList.id!, masterList.toJson());
     }
     return false;
   }
@@ -94,9 +92,9 @@ class WillOpusMasterServices {
     }
 
     if (masterList.id != null) {
-      await StorageLocalHelper.shared.remove(masterList.id!);
-      return true;
+      return StorageLocalHelper.deleteObject(masterList.id!);
     }
+
     return false;
   }
 }

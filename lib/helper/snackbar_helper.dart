@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// Show quick popup in-app notifications.
+/// Helper for quick toast/snackbar notifications.
 class SnackbarHelper {
+  /// Show a text toast at the bottom of the current display context.
   static void showSnackBar(BuildContext context, String txt) {
     var snackBar = SnackBar(
       content: Text(txt),
