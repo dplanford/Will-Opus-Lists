@@ -17,16 +17,17 @@ Updated README.md (once I figure out the Markdown formatting ;-)
 
 <App details, blah, blah>
 
-lib/assets/
+root/assets/ (lib/assets? see about switching directories?)
     - any assets (icons, images, sound files, etc.) that are local to the app's data.
     - depending on the app setup, this directory might move (see the pubspec.yaml file for the app's specific location)
 
 lib/l10n/
     - Language localization files. This includes one ARB file for each language.
     - AppLocalizations.dart - this is an auto-generated code file (along with other associated files), built when getting Flutter packages.
+    - This auto-generated file is imported in any app file requiring text localization. Thus keep things in sync!
 
 lib/model/
-    - core data objects used by this app. While some may be purely for local app use, many are defined to be JSON encoded/decoded for storage & recovery.
+    - core data objects used by this app. While some may be purely for local app use, most are defined to be JSON encoded/decoded for storage & recovery.
 
 lib/helper/
     - various helper classes with useful functionality. Some are simple wrappers around general Flutter capabilities (such as the tiny SnackBar helper). Others are more specific to app functionality.
@@ -44,10 +45,10 @@ lib/menu/
     - classes & Flutter widgets dedicated for menu items & selection dialogs.
 
 lib/widgets/
-    - useful Flutter widgets... this includes simple things like a widget that switches between an iOS/Android styled wait spinner depending on run platform, to app specific list tiles.
+    - useful Flutter widgets... this includes simple things like a widget that switches between an iOS/Android styled wait spinner depending on run platform, to more complex app specific display widgets.
 
 lib/screens/
-    - the full screens used by the app. All should be based on a Scaffold screen widget, usually with an AppBar.
+    - the full screens used by the app. All should be based on a Scaffold screen wrapper, usually with an AppBar.
 
 lib/
     - main.dart
@@ -58,6 +59,37 @@ lib/
 Project Root:
     - pubspec.yaml
         - the core Flutter build setup, defining included external packages, assets directories, and testing hooks.
+
+=============================
+
+Will-Opus List App Included Packages:
+
+Flutter Maintained First Party Packages:
+--------------------
+http
+    - simple access to HTTP online communication
+
+intl
+    - handles basic internationalization, required for language localization.
+
+shared_preferences
+    - local storage access for each app.
+
+flutter_localizations
+    - core Flutter standard language localization support.
+
+    - there are other ways! Look back at my MrOwl setup? Switch to the loading the language file on language change, rather than current store everything in variables.
+
+uuid
+    - various tools for generating UUIDs.
+
+Third Party Packages:
+---------------------
+flutter_colorpicker
+    - a multifunction color selector.
+
+reorderables
+    - a package that automates the UI of drag/drop reordering of items in a list.
 
 =============================
 

@@ -1,15 +1,17 @@
 // TODO: REWORK THIS! No more sort indexes, since sorting is handled by ID order held by the current list.
 
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 import 'package:reorderables/reorderables.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/services/willopus_list_item_services.dart';
 //import 'package:willopuslists/services/willopus_list_services.dart';
-import 'package:willopuslists/widgets/willopus_list_item_tile.dart';
+//import 'package:willopuslists/widgets/willopus_list_item_tile.dart';
 
 class WillOpusListHelper {
   /// Return a matching list of loaded items from a list of IDs for the stored item objects.
+  // TODO: Update/move?, to handle displaying each item as it gets async loaded?
+  // This should be handled in the list screen, with async loading?
   static Future<List<WillOpusListItem>> getItemsFromIds(List<String> itemIds) async {
     List<WillOpusListItem> items = [];
     for (String id in itemIds) {
@@ -21,53 +23,25 @@ class WillOpusListHelper {
     return items;
   }
 
-  // TODO: All this after this point needs to be reworked or deleted...
-  static List<WillOpusListItem> itemsList = [];
-
-  static void sortByCurIndex() {
-    itemsList.sort(
-      (WillOpusListItem a, WillOpusListItem b) {
-        /*
-        if (a.curIndex < b.curIndex) {
-          return -1;
-        } else if (a.curIndex > b.curIndex) {
-          return 1;
-        } else {
-          return 0;
-        }
-        */
-        return 0;
-      },
-    );
-
-    updateSortIndexes();
-  }
-
-  // TODO: on re-order & delete, update the needed item curIndexes, and return a list of
-  // updated items. WillOpusListItem's to be updated just in the curIndex field (need to set up a
-  // specialized service call for just updating a list of items with only curIndex changes...)
+  // TODO: Remove from here! Not needed, but still referenced once in the list screen.
   static List<WillOpusListItem> updateSortIndexes() {
-    List<WillOpusListItem> updatedItems = [];
-    /*
-    for (int i = 0; i < itemsList.length; i = i + 1) {
-      if (i != itemsList[i].curIndex) {
-        itemsList[i].curIndex = i;
-        WillOpusListServices.patchItem(itemsList[i]);
-      }
-    }
-    // TODO: setup specialized "just update the index for each item" for these sorting changes!
-    */
-    return updatedItems;
+    return [];
   }
 
-  static void reorderListTiles(int indexA, indexB) {
-    var tmpItem = itemsList[indexA];
-    itemsList.removeAt(indexA);
-    itemsList.insert(indexB, tmpItem);
-    WillOpusListHelper.updateSortIndexes();
+  static void reorderListTiles(int indexA, int indexB) {
+    // TODO: Need to move this to the list screen? So it can access the screen's current list,
+
+    // TODO: Check if this works? My brain wants to say it should insert at indexB-1,
+    // to handle the removed item?
+
+    //var tmpItem = itemsList[indexA];
+    //itemsList.removeAt(indexA);
+    //itemsList.insert(indexB, tmpItem);
   }
 
+  // TODO: Get this working again! And move to the list screen?
   static List<ReorderableTableRow> tableRows({void Function()? refreshParent}) {
+    /*
     List<ReorderableTableRow> tableRows = [];
     for (var item in WillOpusListHelper.itemsList) {
       tableRows.add(
@@ -83,5 +57,7 @@ class WillOpusListHelper {
       );
     }
     return tableRows;
+    */
+    return [];
   }
 }

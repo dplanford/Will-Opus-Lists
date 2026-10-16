@@ -38,14 +38,21 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // TODO: Adjust top appbar header to display a thin color bar with the list's hex-color
-        // - on top of the string title display....
-        // - Small Column widget for the title, rather than just a centered text widget....
-        title: Center(child: Text(list != null ? list!.title : AppLocalizations.of(context)!.baseError)),
-        actions: [
-          /*
+      appBar: _appbar(),
+      body: _listBody(),
+    );
+  }
+
+  /// Show the appbar screen header
+  AppBar _appbar() {
+    return AppBar(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      // TODO: Adjust top appbar header to display a thin color bar with the list's hex-color
+      // - on top of the string title display....
+      // - Small Column widget for the title, rather than just a centered text widget....
+      title: Center(child: Text(list != null ? list!.title : AppLocalizations.of(context)!.baseError)),
+      actions: [
+        /*
           if (!isLoading && kUseOnlineServices)
             IconButton(
               icon: const Icon(Icons.sync),
@@ -54,12 +61,12 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
               },
             ),
           */
-          if (!isLoading)
-            IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () async {
-                // TODO: Fix! New UUID/key should now be handled by add service call...
-                /*
+        if (!isLoading)
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () async {
+              // TODO: Fix! New UUID/key should now be handled by add service call...
+              /*
                 var newItem = WillOpusListItem(
                     //curIndex: 0,
                     //image: WillOpusImage(
@@ -79,11 +86,9 @@ class _WillOpusListScreenState extends State<WillOpusListScreen> {
                   ),
                 );
                 */
-              },
-            ),
-        ],
-      ),
-      body: _listBody(),
+            },
+          ),
+      ],
     );
   }
 

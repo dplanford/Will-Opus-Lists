@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/helper/snackbar_helper.dart';
-import 'package:willopuslists/helper/willopus_list_helper.dart';
+//import 'package:willopuslists/helper/willopus_list_helper.dart';
 import 'package:willopuslists/services/willopus_list_item_services.dart';
 
 // Auto-generated.
@@ -36,109 +36,121 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
 
   @override
   Widget build(BuildContext context) {
-    String appbarTitle = AppLocalizations.of(context)!.baseError;
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      appBar: _appBar(),
+      body: _detailsBody(),
+    );
+  }
+
+  AppBar _appBar() {
+    String appbarTitle;
     if (widget.item.id == null || widget.item.id!.isEmpty) {
       appbarTitle = AppLocalizations.of(context)!.screenTitleAddItem;
     } else {
       appbarTitle = AppLocalizations.of(context)!.screenTitleEditItem;
     }
 
-    return Scaffold(
+    return AppBar(
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Center(child: Text(appbarTitle)),
-        // TODO: replace leading back button, like some MrOwl pages, to add a "You've made changes, are you sure?"
-        // popup dialog before navigating back with unsaved changes...
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.check),
-            onPressed: () async {
-              bool doExit = false;
-              String snackBarText = '';
-              if (widget.item.id == null || widget.item.id!.isEmpty) {
-                String? addedId = await WillOpusListItemServices.addItem(widget.item);
-                if (addedId != null) {
+      title: Center(child: Text(appbarTitle)),
+      // TODO: replace leading back button, like some MrOwl pages, to add a "You've made changes, are you sure?"
+      // popup dialog before navigating back with unsaved changes...
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.check),
+          onPressed: () async {
+            bool doExit = false;
+            String snackBarText = '';
+            if (widget.item.id == null || widget.item.id!.isEmpty) {
+              String? addedId = await WillOpusListItemServices.addItem(widget.item);
+              if (addedId != null) {
+                // TODO: Fix this! This screen should only ever deal with the passed in (or added) item.
+                // Adding/Updating the list needs to happen on the list screen, not here....
+                /*
                   WillOpusListHelper.itemsList.insert(0, widget.item);
                   WillOpusListHelper.updateSortIndexes();
                   snackBarText = AppLocalizations.of(context)!.snackbarItemAdded;
-                  doExit = true;
-                } else {
-                  snackBarText = AppLocalizations.of(context)!.snackbarItemAddFailed;
-                }
+                  */
+                doExit = true;
               } else {
-                if (await WillOpusListItemServices.patchItem(widget.item)) {
-                  snackBarText = AppLocalizations.of(context)!.snackbarItemUpdated;
-                  doExit = true;
-                } else {
-                  snackBarText = AppLocalizations.of(context)!.snackbarItemUpdateFailed;
-                }
+                snackBarText = AppLocalizations.of(context)!.snackbarItemAddFailed;
               }
-              _showSnackbar(snackBarText);
+            } else {
+              if (await WillOpusListItemServices.patchItem(widget.item)) {
+                snackBarText = AppLocalizations.of(context)!.snackbarItemUpdated;
+                doExit = true;
+              } else {
+                snackBarText = AppLocalizations.of(context)!.snackbarItemUpdateFailed;
+              }
+            }
+            _showSnackbar(snackBarText);
 
-              if (doExit) {
-                if (widget.refreshParent != null) {
-                  widget.refreshParent!();
-                }
-                _exitScreen();
+            if (doExit) {
+              if (widget.refreshParent != null) {
+                widget.refreshParent!();
               }
-            },
-          ),
-        ],
-      ),
-      body: Container(
-        margin: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
-        child: SingleChildScrollView(
-          child: Column(children: [
-            Text(AppLocalizations.of(context)!.itemTitleLabel),
-            ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-              child: Container(
-                color: Colors.white,
-                child: TextField(
-                  controller: _titleController,
-                  onChanged: (value) {
-                    widget.item.title = value;
-                  },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(15.0),
-                      ),
-                    ),
-                    hintText: AppLocalizations.of(context)!.itemTitleHint,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Text('Item Description'),
-            ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-              child: Container(
-                color: Colors.white,
-                child: TextField(
-                  controller: _descController,
-                  maxLines: 16,
-                  onChanged: (value) {
-                    widget.item.desc = value;
-                  },
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15.0),
-                      ),
-                    ),
-                    hintText: AppLocalizations.of(context)!.itemDescHint,
-                  ),
-                ),
-              ),
-            ),
-            // TODO: rework to do direct rather than cached images, since we will be storing or clouding them in base64 string encoding?
-            //if (widget.item.image != null) const SizedBox(height: 24),
-            //if (widget.item.image != null) CachedNetworkImage(imageUrl: widget.item.image.),
-          ]),
+              _exitScreen();
+            }
+          },
         ),
+      ],
+    );
+  }
+
+  Widget _detailsBody() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
+      child: SingleChildScrollView(
+        child: Column(children: [
+          Text(AppLocalizations.of(context)!.itemTitleLabel),
+          ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+            child: Container(
+              color: Colors.white,
+              child: TextField(
+                controller: _titleController,
+                onChanged: (value) {
+                  widget.item.title = value;
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(15.0),
+                    ),
+                  ),
+                  hintText: AppLocalizations.of(context)!.itemTitleHint,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          const Text('Item Description'),
+          ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+            child: Container(
+              color: Colors.white,
+              child: TextField(
+                controller: _descController,
+                maxLines: 16,
+                onChanged: (value) {
+                  widget.item.desc = value;
+                },
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15.0),
+                    ),
+                  ),
+                  hintText: AppLocalizations.of(context)!.itemDescHint,
+                ),
+              ),
+            ),
+          ),
+          // TODO: rework to do direct rather than cached images, since we will be storing or clouding them in base64 string encoding?
+          //if (widget.item.image != null) const SizedBox(height: 24),
+          //if (widget.item.image != null) CachedNetworkImage(imageUrl: widget.item.image.),
+        ]),
       ),
     );
   }

@@ -38,46 +38,51 @@ class _WillOpusMasterListScreenState extends State<WillOpusMasterListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Center(child: Text(AppLocalizations.of(context)!.appTitle)),
-        actions: [
-          if (!isLoading)
-            IconButton(
-              onPressed: () async {
-                if (masterList == null) return; // ERROR, but should be caught before here....
-                // TODO: add error handling?
-
-                // Open the dialog for creating a new list.
-                WillOpusList? newList = await WillOpusListEditDialog.show(context);
-                if (newList == null) return;
-
-                // Add the new list to storage.
-                String? newId = await WillOpusListServices.addList(newList);
-                if (newId == null) return; // error - failed to add the new list.
-                // TODO: add error handling?
-
-                newList.id = newId;
-
-                // Add the new list's id to the top of the master object's list
-                masterList!.listsIds.insert(0, newId);
-                bool patched = await WillOpusMasterServices.patchMasterList(masterList!);
-                if (patched) {
-                  setState(() {
-                    // Add the new list object to the top of the master display list.
-                    lists.insert(0, newList);
-                  });
-                  // TODO: add error handling? Possibly remove the just added list object if this fails?
-                }
-              },
-              icon: Icon(Icons.add),
-            ),
-        ],
-      ),
+      appBar: _appbar(),
       body: Container(
         color: Theme.of(context).colorScheme.inversePrimary,
         child: _showMasterList(),
       ),
+    );
+  }
+
+  /// Show the appbar screen header
+  AppBar _appbar() {
+    return AppBar(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      title: Center(child: Text(AppLocalizations.of(context)!.appTitle)),
+      actions: [
+        if (!isLoading)
+          IconButton(
+            onPressed: () async {
+              if (masterList == null) return; // ERROR, but should be caught before here....
+              // TODO: add error handling?
+
+              // Open the dialog for creating a new list.
+              WillOpusList? newList = await WillOpusListEditDialog.show(context);
+              if (newList == null) return;
+
+              // Add the new list to storage.
+              String? newId = await WillOpusListServices.addList(newList);
+              if (newId == null) return; // error - failed to add the new list.
+              // TODO: add error handling?
+
+              newList.id = newId;
+
+              // Add the new list's id to the top of the master object's list
+              masterList!.listsIds.insert(0, newId);
+              bool patched = await WillOpusMasterServices.patchMasterList(masterList!);
+              if (patched) {
+                setState(() {
+                  // Add the new list object to the top of the master display list.
+                  lists.insert(0, newList);
+                });
+                // TODO: add error handling? Possibly remove the just added list object if this fails?
+              }
+            },
+            icon: Icon(Icons.add),
+          ),
+      ],
     );
   }
 
