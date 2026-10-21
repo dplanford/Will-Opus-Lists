@@ -95,11 +95,6 @@ reorderables
 
 Next Try TODO:
 
-0?) Add the little expected three-bar icon to each re-ordable tile to indicate it can be 
-dragged & dropped to re-order!
-    - list item tile widget
-    - master list item widget
-
 1) Get the list screen working
     - using reorderable tiles, but, first pass, ignoring reordering... just using them as the core widget for display!
     - clicking on a list tile goes to the details screen
@@ -108,13 +103,36 @@ dragged & dropped to re-order!
 
 2) get re-ordering of list tiles working again...
 
-3) Small-ish thins: Migrate the basics of re-ordering to the master screen & its different tiles
+3) Small-ish things: Migrate the basics of re-ordering to the master screen & its different tiles
     - so the user can see with an expected icon that they can re-order their lists.
 
 4) Small thing... fix the color dialog leaving the keyboard out of focus bug.
     - Also, perhaps make the color picker simpiler & easier to understand?
 
-5) Maybe get to images....
+5) Add the little expected three-bar icon to each re-ordable tile to indicate it can be 
+dragged & dropped to re-order!
+    - list item tile widget
+    - master list item widget
+
+6) Rework the master screen list tiles UI to something better?
+    - currently just using a quicky TextButton for each list tile!
+
+7) Add the little expected three-bar icon to each re-ordable tile to indicate it can be 
+dragged & dropped to re-order!
+    - list item tile widget
+    - master list item widget
+
+8) Maybe get to images....
     First Pass (local storage only):
         - just store local link to the image in the user's local phone
+            - will the (temp?) local link returned by the Flutter image library access packages persist?
+            - need to check both iOS & Android systems for this!
         - also could pick an image URL from a browser window?
+            - Totally separate new idea...
+            - use a quicky in-app browser (like I did with MrOwl using several different third party packages)
+            - display the image from the web URL (assuming the user has internet connectivity!)
+                - side thought... give the user the in-app option to store the web image locally?
+                    - in case of loss of connectivity?
+    - ALL first pass image stuff might plan for server storage of base64 encoded images?
+    - BUT not try for it yet... first pass is just image links to local library assets, or web URL links.
+ 

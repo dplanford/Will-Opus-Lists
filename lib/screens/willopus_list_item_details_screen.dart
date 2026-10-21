@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:willopuslists/helper/snackbar_helper.dart';
 
 import 'package:willopuslists/model/willopus_list_item.dart';
-import 'package:willopuslists/helper/snackbar_helper.dart';
-//import 'package:willopuslists/helper/willopus_list_helper.dart';
-import 'package:willopuslists/services/willopus_list_item_services.dart';
 
 // Auto-generated.
 import 'package:willopuslists/l10n/app_localizations.dart';
 
-/// Screen for displaying/adding a list item.
+/// Screen for editing a list item.
 ///
 class WillOpusListItemDetailsScreen extends StatefulWidget {
   final WillOpusListItem item;
-  final void Function()? refreshParent;
 
   const WillOpusListItemDetailsScreen({
     super.key,
     required this.item,
-    this.refreshParent,
   });
 
   @override
@@ -25,12 +21,19 @@ class WillOpusListItemDetailsScreen extends StatefulWidget {
 }
 
 class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetailsScreen> {
+  WillOpusListItem editItem = WillOpusListItem();
+
   final _titleController = TextEditingController();
   final _descController = TextEditingController();
+
+  bool changed = false;
 
   @override
   void initState() {
     super.initState();
+
+    editItem = widget.item.clone();
+
     _titleController.text = widget.item.title;
     _descController.text = widget.item.desc;
   }
@@ -46,7 +49,7 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
 
   AppBar _appBar() {
     String appbarTitle;
-    if (widget.item.id == null || widget.item.id!.isEmpty) {
+    if (editItem.id == null || editItem.id!.isEmpty) {
       appbarTitle = AppLocalizations.of(context)!.screenTitleAddItem;
     } else {
       appbarTitle = AppLocalizations.of(context)!.screenTitleEditItem;
@@ -56,42 +59,19 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       title: Center(child: Text(appbarTitle)),
       // TODO: replace leading back button, like some MrOwl pages, to add a "You've made changes, are you sure?"
-      // popup dialog before navigating back with unsaved changes...
+      // popup dialog before navigating back with unsaved changes... Used local "changed" boolean.
       actions: [
         IconButton(
           icon: const Icon(Icons.check),
           onPressed: () async {
-            bool doExit = false;
-            String snackBarText = '';
-            if (widget.item.id == null || widget.item.id!.isEmpty) {
-              String? addedId = await WillOpusListItemServices.addItem(widget.item);
-              if (addedId != null) {
-                // TODO: Fix this! This screen should only ever deal with the passed in (or added) item.
-                // Adding/Updating the list needs to happen on the list screen, not here....
-                /*
-                  WillOpusListHelper.itemsList.insert(0, widget.item);
-                  WillOpusListHelper.updateSortIndexes();
-                  snackBarText = AppLocalizations.of(context)!.snackbarItemAdded;
-                  */
-                doExit = true;
-              } else {
-                snackBarText = AppLocalizations.of(context)!.snackbarItemAddFailed;
-              }
+            if (editItem.title.isEmpty) {
+              // TODO: Localize.
+              SnackbarHelper.showSnackBar(context, 'Enter an item title....');
             } else {
-              if (await WillOpusListItemServices.patchItem(widget.item)) {
-                snackBarText = AppLocalizations.of(context)!.snackbarItemUpdated;
-                doExit = true;
-              } else {
-                snackBarText = AppLocalizations.of(context)!.snackbarItemUpdateFailed;
-              }
-            }
-            _showSnackbar(snackBarText);
-
-            if (doExit) {
-              if (widget.refreshParent != null) {
-                widget.refreshParent!();
-              }
-              _exitScreen();
+              // Store edited values in passed in item.
+              widget.item.title = editItem.title;
+              widget.item.desc = editItem.desc;
+              Navigator.of(context).pop();
             }
           },
         ),
@@ -112,7 +92,8 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
               child: TextField(
                 controller: _titleController,
                 onChanged: (value) {
-                  widget.item.title = value;
+                  editItem.title = value;
+                  changed = true;
                 },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -126,7 +107,7 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
             ),
           ),
           const SizedBox(height: 24),
-          const Text('Item Description'),
+          const Text('Item Description'), // TODO: Localization.
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(15.0)),
             child: Container(
@@ -135,7 +116,7 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
                 controller: _descController,
                 maxLines: 16,
                 onChanged: (value) {
-                  widget.item.desc = value;
+                  editItem.desc = value;
                 },
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(
@@ -154,13 +135,5 @@ class _WillOpusItemsListDetailsScreenState extends State<WillOpusListItemDetails
         ]),
       ),
     );
-  }
-
-  void _showSnackbar(String txt) {
-    SnackbarHelper.showSnackBar(context, txt);
-  }
-
-  void _exitScreen() {
-    Navigator.of(context).pop();
   }
 }

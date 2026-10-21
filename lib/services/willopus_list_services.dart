@@ -55,7 +55,7 @@ class WillOpusListServices {
     if (list.id == null) return false;
 
     if (onCloud) {
-      return (await StorageFirebaseHelper.patchObject(list.id!, list.toJson()));
+      return await StorageFirebaseHelper.patchObject(list.id!, list.toJson());
     }
 
     if (list.id != null) {
@@ -73,7 +73,7 @@ class WillOpusListServices {
     if (list.id == null) return false;
 
     if (onCloud) {
-      return (StorageFirebaseHelper.deleteObject(list.id!));
+      return StorageFirebaseHelper.deleteObject(list.id!);
     }
 
     if (list.id != null) {

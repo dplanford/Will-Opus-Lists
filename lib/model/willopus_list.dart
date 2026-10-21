@@ -16,6 +16,7 @@ class WillOpusList {
   List<String> itemIds = [];
 
   WillOpusList({
+    this.id = '',
     this.title = '',
     this.desc = '',
     this.hexColor = kDefaultListColorHex,
@@ -42,5 +43,15 @@ class WillOpusList {
     data[_kHexColor] = hexColor;
     data[_kItemIds] = itemIds;
     return data;
+  }
+
+  WillOpusList clone() {
+    return WillOpusList(
+      id: id,
+      title: title,
+      desc: desc,
+      hexColor: hexColor,
+      itemIds: itemIds,
+    );
   }
 }

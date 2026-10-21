@@ -13,6 +13,7 @@ class WillOpusListItem {
   bool isCompleted = false;
 
   WillOpusListItem({
+    this.id = '',
     this.title = '',
     this.desc = '',
     //this.image,
@@ -35,5 +36,14 @@ class WillOpusListItem {
     data[_kCompleted] = isCompleted;
     //data['image'] = image != null ? image!.toJson() : null;
     return data;
+  }
+
+  WillOpusListItem clone() {
+    return WillOpusListItem(
+      id: id,
+      title: title,
+      desc: desc,
+      isCompleted: isCompleted,
+    );
   }
 }

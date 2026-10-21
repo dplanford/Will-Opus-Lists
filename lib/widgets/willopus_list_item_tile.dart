@@ -104,10 +104,7 @@ class _WillOpusListItemTileState extends State<WillOpusListItemTile> {
             icon: const Icon(Icons.arrow_forward),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => WillOpusListItemDetailsScreen(
-                  item: widget.item,
-                  refreshParent: widget.refreshParent,
-                ),
+                builder: (context) => WillOpusListItemDetailsScreen(item: widget.item),
               ),
             ),
           ),
