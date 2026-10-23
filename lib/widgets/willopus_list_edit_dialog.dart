@@ -97,6 +97,7 @@ class WillOpusListEditDialog {
 
     // Cancelled, return nothing.
     if (cancelled) return null;
+
     // Editing existing list, update it.
     if (list != null) {
       list.title = titleField.controller!.text;

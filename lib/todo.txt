@@ -95,6 +95,10 @@ reorderables
 
 Next Try TODO:
 
+0!) Fix the master screen issue where saving lists doesn't seem to save their key id?
+    - works first time... create a new list & click on it to go to an empty list screen.
+    - reload (restart app, etc.), and the load from storage errors on no list onk id, even though it loaded from storage?
+
 1) Get the list screen working
     - using reorderable tiles, but, first pass, ignoring reordering... just using them as the core widget for display!
     - clicking on a list tile goes to the details screen
