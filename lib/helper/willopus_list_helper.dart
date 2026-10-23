@@ -1,12 +1,7 @@
 // TODO: REWORK THIS! No more sort indexes, since sorting is handled by ID order held by the current list.
 
-//import 'package:flutter/material.dart';
-import 'package:reorderables/reorderables.dart';
-
 import 'package:willopuslists/model/willopus_list_item.dart';
 import 'package:willopuslists/services/willopus_list_item_services.dart';
-//import 'package:willopuslists/services/willopus_list_services.dart';
-//import 'package:willopuslists/widgets/willopus_list_item_tile.dart';
 
 /// Helper functions for lists.
 ///
